@@ -1,4 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- MD3 large corner. The T is centred on (32, 32): cross-bar x=16–48
+       (centre 32), stem x=29–35 (centre 32), glyph y=18–46 (centre 32). -->
   <rect width="64" height="64" rx="14" fill="#3d6838"/>
-  <path d="M18 20h28v6H38v22h-6V26H18z" fill="#ffffff"/>
+  <path d="M16 18h32v6H35v22H29V24H16z" fill="#ffffff"/>
 </svg>
