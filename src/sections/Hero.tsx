@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Button } from '../components/Button'
+import { MiniPlayer } from '../components/MiniPlayer'
 import { profile } from '../data/profile'
 import './Hero.css'
 
@@ -26,15 +27,7 @@ export function Hero() {
             {t('hero.ctaGithub')}
           </Button>
         </div>
-        <iframe
-          className="hero__embed"
-          src={profile.spotifyEmbedUrl}
-          title={t('hero.embedTitle')}
-          width="100%"
-          height={80}
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          allowFullScreen
-        />
+        <MiniPlayer />
       </div>
     </section>
   )

@@ -12,7 +12,10 @@ export default {
     bio: "You read my bio. That's enough social interaction for one day.",
     ctaProjects: 'View Projects',
     ctaGithub: 'GitHub',
-    embedTitle: 'Spotify music player',
+  },
+  miniPlayer: {
+    play: 'Play',
+    pause: 'Pause',
   },
   about: {
     eyebrow: 'About',

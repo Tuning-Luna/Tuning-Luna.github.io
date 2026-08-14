@@ -12,7 +12,10 @@ export default {
     bio: '你读了这段话，说明今天的社交额度已经用完了。',
     ctaProjects: '查看项目',
     ctaGithub: 'GitHub',
-    embedTitle: 'Spotify 音乐播放器',
+  },
+  miniPlayer: {
+    play: '播放',
+    pause: '暂停',
   },
   about: {
     eyebrow: '关于',
