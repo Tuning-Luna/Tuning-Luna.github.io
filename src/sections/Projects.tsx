@@ -22,7 +22,7 @@ export function Projects() {
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>
-
+{/* 
       <h3 className="projects__subhead">{t('projects.moreTitle')}</h3>
       <ul className="projects__list">
         {courseProjects.map((project) => (
@@ -44,7 +44,7 @@ export function Projects() {
             )}
           </li>
         ))}
-      </ul>
+      </ul> */}
 
       <div className="projects__viewall">
         <Button href={`${profile.githubUrl}?tab=repositories`} variant="text">

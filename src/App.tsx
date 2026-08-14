@@ -1,12 +1,12 @@
 import { AppBar } from './components/AppBar'
 import { Footer } from './components/Footer'
 import { About } from './sections/About'
-import { Activity } from './sections/Activity'
+// import { Activity } from './sections/Activity'
 import { Contact } from './sections/Contact'
 import { Hero } from './sections/Hero'
 import { NowPlaying } from './sections/NowPlaying'
 import { Projects } from './sections/Projects'
-import { TechStack } from './sections/TechStack'
+// import { TechStack } from './sections/TechStack'
 
 export default function App() {
   return (
@@ -19,9 +19,9 @@ export default function App() {
         <div className="layout__content">
           <main>
             <About />
-            <TechStack />
+            {/* <TechStack /> */}
             <Projects />
-            <Activity />
+            {/* <Activity /> */}
             <NowPlaying />
             <Contact />
           </main>
