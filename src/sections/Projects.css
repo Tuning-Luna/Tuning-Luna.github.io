@@ -15,13 +15,15 @@
   gap: var(--md-sys-spacing-xl);
 }
 
-@media (min-width: 720px) {
+/* Container queries: adapt to the left column (.layout__content) width rather
+   than the viewport, since the split layout makes the column narrower. */
+@container (min-width: 460px) {
   .projects__grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (min-width: 1000px) {
+@container (min-width: 820px) {
   .projects__grid {
     grid-template-columns: repeat(3, 1fr);
   }

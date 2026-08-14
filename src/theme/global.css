@@ -125,9 +125,94 @@ a:hover {
 }
 
 /* Content layer above the fixed background (.site-bg, z-index 0). */
-main {
+.layout {
   position: relative;
   z-index: 1;
+}
+
+/* --- Split layout: fixed hero on the right, scrolling content on the left ---
+   Above 1000px the hero is a sticky sidebar; below it the page falls back to a
+   single column with the hero at the top. The background (`.site-bg`) is a fixed
+   full-viewport layer and is untouched. */
+
+.layout {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--md-sys-spacing-3xl);
+  max-width: 1320px;
+  margin-inline: auto;
+  padding-inline: var(--md-sys-spacing-xl);
+}
+
+@media (min-width: 720px) {
+  .layout {
+    padding-inline: var(--md-sys-spacing-2xl);
+  }
+}
+
+/* The left column is the sizing context for the responsive grids (container
+   queries), so they adapt to the column width instead of the viewport. */
+.layout__content {
+  flex: 1;
+  min-width: 0;
+  container-type: inline-size;
+}
+
+.layout__hero {
+  position: sticky;
+  /* Clear the sticky app bar (~64px) plus breathing room. */
+  top: calc(var(--md-sys-spacing-4xl) + var(--md-sys-spacing-lg));
+  flex: 0 0 320px;
+  height: calc(100vh - var(--md-sys-spacing-4xl) - var(--md-sys-spacing-lg) - var(--md-sys-spacing-2xl));
+  padding: var(--md-sys-spacing-lg);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Compact the hero inside the sidebar; the aside owns the gutter. */
+.layout__hero .hero {
+  padding-block: var(--md-sys-spacing-md);
+  background: none;
+}
+
+.layout__hero .container {
+  max-width: none;
+  padding-inline: 0;
+}
+
+@media (max-width: 1000px) {
+  .layout {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .layout__hero {
+    position: static;
+    flex-basis: auto;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    overflow: visible;
+    order: -1;
+  }
+
+  /* Restore the hero's own padding and tint once it scrolls in the single column. */
+  .layout__hero .hero {
+    padding-block: var(--md-sys-spacing-5xl) var(--md-sys-spacing-4xl);
+    background: radial-gradient(
+      80% 60% at 50% 0%,
+      color-mix(in srgb, var(--md-sys-color-primary-container) 28%, transparent),
+      transparent 70%
+    );
+  }
+
+  .layout__hero .container {
+    max-width: 1024px;
+    padding-inline: var(--md-sys-spacing-xl);
+  }
 }
 
 /* --- Layout utilities --- */

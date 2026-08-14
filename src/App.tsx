@@ -14,16 +14,23 @@ export default function App() {
       {/* Fixed blurred background image + theme-tinted mask (see global.css). */}
       <div className="site-bg" aria-hidden="true" />
       <AppBar />
-      <main>
-        <Hero />
-        <About />
-        <TechStack />
-        <Projects />
-        <Activity />
-        <NowPlaying />
-        <Contact />
-      </main>
-      <Footer />
+      {/* Split layout: fixed hero panel on the right, scrolling content on the left. */}
+      <div className="layout">
+        <div className="layout__content">
+          <main>
+            <About />
+            <TechStack />
+            <Projects />
+            <Activity />
+            <NowPlaying />
+            <Contact />
+          </main>
+          <Footer />
+        </div>
+        <aside className="layout__hero">
+          <Hero />
+        </aside>
+      </div>
     </>
   )
 }
