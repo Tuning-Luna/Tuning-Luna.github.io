@@ -8,21 +8,12 @@ export function Hero() {
   return (
     <section id="top" className="hero">
       <div className="container hero__inner">
-        <iframe
-          className="hero__embed"
-          src={profile.spotifyEmbedUrl}
-          title={t('hero.embedTitle')}
-          width="100%"
-          height={152}
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          allowFullScreen
-        />
         <img
           className="hero__avatar"
           src={profile.avatarUrl}
           alt={profile.name}
-          width={120}
-          height={120}
+          width={128}
+          height={128}
           referrerPolicy="no-referrer"
         />
         <h1 className="hero__name">{profile.name}</h1>
@@ -35,6 +26,15 @@ export function Hero() {
             {t('hero.ctaGithub')}
           </Button>
         </div>
+        <iframe
+          className="hero__embed"
+          src={profile.spotifyEmbedUrl}
+          title={t('hero.embedTitle')}
+          width="100%"
+          height={80}
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          allowFullScreen
+        />
       </div>
     </section>
   )

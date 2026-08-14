@@ -184,12 +184,6 @@ a:hover {
 }
 
 .layout__hero .hero__avatar {
-  width: 96px;
-  height: 96px;
-  margin-bottom: var(--md-sys-spacing-md);
-}
-
-.layout__hero .hero__embed {
   margin-bottom: var(--md-sys-spacing-md);
 }
 
