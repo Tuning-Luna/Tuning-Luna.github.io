@@ -1,12 +1,12 @@
 /* M3 section: eyebrow (label) + headline + optional subtitle. */
 
 .m3-section {
-  padding-block: var(--md-sys-spacing-4xl);
+  padding-block: var(--md-sys-spacing-2xl);
 }
 
 @media (min-width: 720px) {
   .m3-section {
-    padding-block: var(--md-sys-spacing-5xl);
+    padding-block: var(--md-sys-spacing-3xl);
   }
 }
 
