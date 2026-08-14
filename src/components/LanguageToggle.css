@@ -1,0 +1,27 @@
+/* Compact language toggle: icon + current language code. */
+
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-xs);
+  height: 40px;
+  padding-inline: var(--md-sys-spacing-md);
+  border: none;
+  border-radius: var(--md-sys-shape-corner-full);
+  background-color: transparent;
+  color: var(--md-sys-color-on-surface-variant);
+  font-family: var(--md-ref-typeface);
+  font-size: var(--md-sys-typescale-label-medium-size);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard);
+}
+
+.lang-toggle:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+}
+
+.lang-toggle__code {
+  font-size: var(--md-sys-typescale-label-medium-size);
+  font-weight: 500;
+}

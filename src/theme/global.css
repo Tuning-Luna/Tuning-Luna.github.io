@@ -1,0 +1,159 @@
+/* Global base styles — reset, typography, focus, motion, layout utilities.
+   Everything reads from the design tokens in tokens.css. */
+
+:root {
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Keep anchored section headings clear of the sticky app bar. */
+  scroll-padding-top: calc(var(--md-sys-spacing-4xl) + var(--md-sys-spacing-2xl));
+}
+
+body {
+  font-family: var(--md-ref-typeface);
+  font-size: var(--md-sys-typescale-body-medium-size);
+  line-height: var(--md-sys-typescale-body-medium-line-height);
+  background-color: var(--md-sys-color-background);
+  color: var(--md-sys-color-on-background);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition:
+    background-color var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard),
+    color var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* --- Fixed site background: blurred image + theme-tinted mask ---
+   The image is dark, so the mask is stronger in light mode (readability) and
+   lighter in dark mode (the image shows through). Content sits above via
+   `main` / `.appbar` / `.m3-footer` z-index rules. */
+
+.site-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.site-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/JSA-279k.png');
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px);
+  /* Slightly larger than the viewport so the blurred edges stay hidden. */
+  transform: scale(1.05);
+}
+
+.site-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: color-mix(in srgb, var(--md-sys-color-background) 80%, transparent);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .site-bg::after {
+    /* The image is dark, so it can show through more in dark mode. */
+    background-color: color-mix(in srgb, var(--md-sys-color-background) 60%, transparent);
+  }
+}
+
+:root[data-theme='dark'] .site-bg::after {
+  background-color: color-mix(in srgb, var(--md-sys-color-background) 60%, transparent);
+}
+
+a {
+  color: var(--md-sys-color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+::selection {
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+}
+
+:focus-visible {
+  outline: 2px solid var(--md-sys-color-primary);
+  outline-offset: 2px;
+  border-radius: var(--md-sys-shape-corner-extra-small);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Content layer above the fixed background (.site-bg, z-index 0). */
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Layout utilities --- */
+
+.container {
+  width: 100%;
+  max-width: 1024px;
+  margin-inline: auto;
+  padding-inline: var(--md-sys-spacing-xl);
+}
+
+@media (min-width: 720px) {
+  .container {
+    padding-inline: var(--md-sys-spacing-2xl);
+  }
+}
+
+/* Visually hide text while keeping it readable to screen readers. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

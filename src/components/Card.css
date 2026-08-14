@@ -1,0 +1,34 @@
+/* M3 elevated card — surface-container-low, large shape, hover lifts one level. */
+
+.m3-card {
+  background-color: var(--md-sys-color-surface-container-low);
+  color: var(--md-sys-color-on-surface);
+  border-radius: var(--md-sys-shape-corner-large);
+  transition:
+    box-shadow var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard),
+    background-color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard);
+}
+
+.m3-card--elev1 {
+  box-shadow: var(--md-sys-elevation-level1);
+}
+
+.m3-card--elev1:hover {
+  box-shadow: var(--md-sys-elevation-level2);
+}
+
+.m3-card--elev2 {
+  box-shadow: var(--md-sys-elevation-level2);
+}
+
+.m3-card--elev2:hover {
+  box-shadow: var(--md-sys-elevation-level3);
+}
+
+.m3-card--elev3 {
+  box-shadow: var(--md-sys-elevation-level3);
+}
+
+.m3-card--elev3:hover {
+  box-shadow: var(--md-sys-elevation-level4);
+}

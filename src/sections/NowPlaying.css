@@ -1,0 +1,18 @@
+.now-playing__card {
+  display: inline-block;
+  border-radius: var(--md-sys-shape-corner-large);
+  overflow: hidden;
+  box-shadow: var(--md-sys-elevation-level1);
+  transition: box-shadow var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard);
+}
+
+.now-playing__card:hover {
+  box-shadow: var(--md-sys-elevation-level2);
+}
+
+.now-playing__card img {
+  width: 320px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

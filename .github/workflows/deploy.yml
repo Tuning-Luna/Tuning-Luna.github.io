@@ -1,0 +1,63 @@
+# Deploys the built site to GitHub Pages.
+#
+# This repository is named `<username>.github.io`, so GitHub Pages serves it as a
+# *user site* from the root URL — `vite.config.ts` sets `base: '/'` accordingly.
+#
+# Follows the official Vite deployment guide (https://vite.dev/guide/static-deploy)
+# and the GitHub Pages Actions (configure-pages / upload-pages-artifact / deploy-pages).
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Allow only one concurrent deployment, cancel any run queued while one is running.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint & i18n check
+        run: npm run lint && npm run check:i18n
+
+      # `npm run build` runs `tsc -b && vite build`, so the TypeScript check
+      # happens here as part of the build.
+      - name: Build
+        run: npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ./dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

@@ -1,0 +1,40 @@
+/* M3 section: eyebrow (label) + headline + optional subtitle. */
+
+.m3-section {
+  padding-block: var(--md-sys-spacing-4xl);
+}
+
+@media (min-width: 720px) {
+  .m3-section {
+    padding-block: var(--md-sys-spacing-5xl);
+  }
+}
+
+.m3-section__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-sys-spacing-sm);
+  margin-bottom: var(--md-sys-spacing-2xl);
+}
+
+.m3-section__eyebrow {
+  font-size: var(--md-sys-typescale-label-large-size);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--md-sys-color-primary);
+}
+
+.m3-section__title {
+  font-size: var(--md-sys-typescale-headline-medium-size);
+  font-weight: var(--md-sys-typescale-headline-medium-weight);
+  line-height: var(--md-sys-typescale-headline-medium-line-height);
+  letter-spacing: var(--md-sys-typescale-headline-medium-tracking);
+}
+
+.m3-section__subtitle {
+  max-width: 56ch;
+  font-size: var(--md-sys-typescale-body-large-size);
+  line-height: var(--md-sys-typescale-body-large-line-height);
+  color: var(--md-sys-color-on-surface-variant);
+}

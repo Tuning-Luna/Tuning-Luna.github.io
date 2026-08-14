@@ -1,0 +1,4 @@
+/* Entry stylesheet. Design tokens (colors + type/shape/elevation/spacing/motion)
+   live in ./theme/tokens.css; global base styles in ./theme/global.css. */
+@import './theme/tokens.css';
+@import './theme/global.css';

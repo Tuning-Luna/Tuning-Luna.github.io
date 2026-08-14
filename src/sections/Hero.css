@@ -1,0 +1,63 @@
+/* Hero — centered identity block with a soft M3 colour tint. */
+
+.hero {
+  padding-block: var(--md-sys-spacing-5xl) var(--md-sys-spacing-4xl);
+  background:
+    radial-gradient(
+      80% 60% at 50% 0%,
+      color-mix(in srgb, var(--md-sys-color-primary-container) 28%, transparent),
+      transparent 70%
+    );
+}
+
+.hero__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--md-sys-spacing-sm);
+}
+
+.hero__avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: var(--md-sys-shape-corner-full);
+  border: 4px solid var(--md-sys-color-surface-container-high);
+  box-shadow: var(--md-sys-elevation-level2);
+  margin-bottom: var(--md-sys-spacing-lg);
+}
+
+.hero__name {
+  font-size: var(--md-sys-typescale-headline-large-size);
+  font-weight: var(--md-sys-typescale-headline-large-weight);
+  line-height: var(--md-sys-typescale-headline-large-line-height);
+}
+
+.hero__role {
+  font-size: var(--md-sys-typescale-title-large-size);
+  font-weight: var(--md-sys-typescale-title-large-weight);
+  line-height: var(--md-sys-typescale-title-large-line-height);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.hero__tagline {
+  font-size: var(--md-sys-typescale-body-large-size);
+  line-height: var(--md-sys-typescale-body-large-line-height);
+  color: var(--md-sys-color-primary);
+  font-weight: 500;
+}
+
+.hero__bio {
+  max-width: 44ch;
+  font-size: var(--md-sys-typescale-body-medium-size);
+  line-height: var(--md-sys-typescale-body-medium-line-height);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--md-sys-spacing-lg);
+  margin-top: var(--md-sys-spacing-xl);
+}

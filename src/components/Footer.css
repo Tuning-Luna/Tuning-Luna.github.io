@@ -1,0 +1,21 @@
+.m3-footer {
+  position: relative;
+  z-index: 1;
+  margin-top: var(--md-sys-spacing-4xl);
+  padding-block: var(--md-sys-spacing-2xl);
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+  background-color: var(--md-sys-color-surface-container-lowest);
+}
+
+.m3-footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-sys-spacing-xs);
+  text-align: center;
+}
+
+.m3-footer__line {
+  font-size: var(--md-sys-typescale-body-small-size);
+  line-height: var(--md-sys-typescale-body-small-line-height);
+  color: var(--md-sys-color-on-surface-variant);
+}
