@@ -160,10 +160,14 @@ a:hover {
 
 .layout__hero {
   position: sticky;
-  /* Clear the sticky app bar (~64px) plus breathing room. */
-  top: calc(var(--md-sys-spacing-4xl) + var(--md-sys-spacing-lg));
-  flex: 0 0 320px;
-  height: calc(100vh - var(--md-sys-spacing-4xl) - var(--md-sys-spacing-lg) - var(--md-sys-spacing-2xl));
+  /* Clear the sticky app bar (~64px) plus a small gap. */
+  top: calc(var(--md-sys-spacing-4xl) + var(--md-sys-spacing-xs));
+  /* 360px wide so the Spotify embed (~328px content) stays above its ~300px
+     minimum width and doesn't render internal scrollbars. */
+  flex: 0 0 360px;
+  /* Use the full space below the app bar so the hero content fits without
+     scrolling on common laptop viewports. */
+  height: calc(100vh - var(--md-sys-spacing-4xl) - var(--md-sys-spacing-xs));
   padding: var(--md-sys-spacing-lg);
   overflow-y: auto;
   display: flex;
@@ -171,10 +175,26 @@ a:hover {
   justify-content: center;
 }
 
-/* Compact the hero inside the sidebar; the aside owns the gutter. */
+/* Compact the hero inside the sidebar; the aside owns the gutter. Tighter
+   spacing keeps the whole stack (embed + avatar + text + actions) from
+   overflowing the fixed panel on shorter screens. */
 .layout__hero .hero {
-  padding-block: var(--md-sys-spacing-md);
+  padding-block: var(--md-sys-spacing-sm);
   background: none;
+}
+
+.layout__hero .hero__avatar {
+  width: 96px;
+  height: 96px;
+  margin-bottom: var(--md-sys-spacing-md);
+}
+
+.layout__hero .hero__embed {
+  margin-bottom: var(--md-sys-spacing-md);
+}
+
+.layout__hero .hero__actions {
+  margin-top: var(--md-sys-spacing-lg);
 }
 
 .layout__hero .container {

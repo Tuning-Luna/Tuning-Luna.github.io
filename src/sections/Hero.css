@@ -3,11 +3,9 @@
 .hero {
   padding-block: var(--md-sys-spacing-5xl) var(--md-sys-spacing-4xl);
   background:
-    radial-gradient(
-      80% 60% at 50% 0%,
+    radial-gradient(80% 60% at 50% 0%,
       color-mix(in srgb, var(--md-sys-color-primary-container) 28%, transparent),
-      transparent 70%
-    );
+      transparent 70%);
 }
 
 .hero__inner {
@@ -16,6 +14,14 @@
   align-items: center;
   text-align: center;
   gap: var(--md-sys-spacing-sm);
+}
+
+.hero__embed {
+  width: 100%;
+  border: none;
+  border-radius: var(--md-sys-shape-corner-large);
+  display: block;
+  margin-bottom: var(--md-sys-spacing-lg);
 }
 
 .hero__avatar {

@@ -8,6 +8,15 @@ export function Hero() {
   return (
     <section id="top" className="hero">
       <div className="container hero__inner">
+        <iframe
+          className="hero__embed"
+          src={profile.spotifyEmbedUrl}
+          title={t('hero.embedTitle')}
+          width="100%"
+          height={152}
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          allowFullScreen
+        />
         <img
           className="hero__avatar"
           src={profile.avatarUrl}

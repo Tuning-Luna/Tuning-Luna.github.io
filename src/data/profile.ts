@@ -11,6 +11,9 @@ export const profile = {
   githubUrl: 'https://github.com/Tuning-Luna',
   spotifyUrl: 'https://open.spotify.com/user/31d6ybszeq4mxs3khxyautsuexty',
   spotifyUid: '31d6ybszeq4mxs3khxyautsuexty',
+  /** Official Spotify embed for a track, shown above the hero avatar. */
+  spotifyEmbedUrl:
+    'https://open.spotify.com/embed/track/3UmaczJpikHgJFyBTAJVoz?utm_source=generator&si=46be042025eb464d',
   avatarUrl: 'https://github.com/Tuning-Luna.png?size=256',
   /** GitHub profile bio. */
   bio: "You Read My Bio. That's Enough Social Interaction For One Day.",
