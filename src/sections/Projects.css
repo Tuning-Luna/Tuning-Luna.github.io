@@ -45,12 +45,24 @@
   gap: var(--md-sys-spacing-sm) var(--md-sys-spacing-md);
   padding: var(--md-sys-spacing-md) var(--md-sys-spacing-lg);
   border-radius: var(--md-sys-shape-corner-medium);
-  background-color: var(--md-sys-color-surface-container-low);
+  /* Frosted glass, matching the featured cards instead of a solid block. */
+  background-color: color-mix(
+    in srgb,
+    var(--md-sys-color-surface-container-low) calc(var(--md-glass-opacity) * 100%),
+    transparent
+  );
+  -webkit-backdrop-filter: blur(var(--md-glass-blur)) saturate(var(--md-glass-saturate));
+  backdrop-filter: blur(var(--md-glass-blur)) saturate(var(--md-glass-saturate));
+  border: 1px solid var(--md-glass-border);
   transition: background-color var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard);
 }
 
 .projects__row:hover {
-  background-color: var(--md-sys-color-surface-container);
+  background-color: color-mix(
+    in srgb,
+    var(--md-sys-color-surface-container) calc(var(--md-glass-opacity) * 100%),
+    transparent
+  );
 }
 
 .projects__row-name {

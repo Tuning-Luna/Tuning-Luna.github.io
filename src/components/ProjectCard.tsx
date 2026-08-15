@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import type { Project } from '../types'
+import { handleSpotlight } from '../hooks/useSpotlight'
 import { Card } from './Card'
 import { Chip } from './Chip'
 import { Icon } from './Icon'
@@ -8,7 +9,7 @@ import './ProjectCard.css'
 export function ProjectCard({ project }: { project: Project }) {
   const { t } = useTranslation()
   return (
-    <Card className="project-card">
+    <Card className="project-card spotlight" onMouseMove={handleSpotlight}>
       <div className="project-card__head">
         <a
           className="project-card__name"
