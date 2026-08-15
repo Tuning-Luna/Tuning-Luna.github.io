@@ -11,6 +11,7 @@ export const profile = {
   githubUrl: 'https://github.com/Tuning-Luna',
   gmailUrl: 'mailto:tuningluna1206@gmail.com',
   discordUrl: 'https://discord.com/users/1220524033955729428',
+  telegramUrl: 'https://t.me/Bannister4529_bot',
   spotifyUrl: 'https://open.spotify.com/user/31d6ybszeq4mxs3khxyautsuexty',
   spotifyUid: '31d6ybszeq4mxs3khxyautsuexty',
   avatarUrl: 'https://github.com/Tuning-Luna.png?size=256',

@@ -103,6 +103,7 @@ export default {
     github: { label: 'GitHub', desc: 'Open source & code' },
     gmail: { label: 'Gmail', desc: 'Email me' },
     discord: { label: 'Discord', desc: 'Chat with me' },
+    telegram: { label: 'Telegram', desc: 'Message me' },
     spotify: { label: 'Spotify', desc: 'My playlists' },
   },
   nowPlaying: {

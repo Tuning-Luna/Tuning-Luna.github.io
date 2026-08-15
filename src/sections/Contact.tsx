@@ -15,6 +15,7 @@ const LINKS: ContactLink[] = [
   { id: 'github', href: profile.githubUrl, icon: 'github' },
   { id: 'gmail', href: profile.gmailUrl, icon: 'gmail' },
   { id: 'discord', href: profile.discordUrl, icon: 'discord' },
+  { id: 'telegram', href: profile.telegramUrl, icon: 'telegram' },
   { id: 'spotify', href: profile.spotifyUrl, icon: 'spotify' },
 ] as const
 
