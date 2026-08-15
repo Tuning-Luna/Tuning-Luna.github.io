@@ -7,7 +7,7 @@ import './NowPlaying.css'
 // the GitHub profile README (Tuning-Luna/Tuning-Luna). It shows the currently
 // playing track, or the last one played. `border_radius=16` matches this site's
 // M3 shape scale (corner-large).
-const SPOTIFY_CARD_URL = `https://spotify-github-profile.kittinanx.com/api/view?uid=${profile.spotifyUid}&cover_image=true&theme=novatorem&show_offline=false&background_color=121212&interchange=false&profanity=false&bar_color=53b14f&bar_color_cover=false&border_radius=16`
+const SPOTIFY_CARD_URL = `https://spotify-github-profile.kittinanx.com/api/view?uid=${profile.spotifyUid}&cover_image=true&theme=novatorem&show_offline=false&background_color=C8C8C8&interchange=false&profanity=false&bar_color=53b14f&bar_color_cover=false&border_radius=16&interchange=true`
 
 // The same service redirects straight to the currently playing track (302 →
 // spotify:track) when given `redirect=true`; using it as the card href makes a
