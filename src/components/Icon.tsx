@@ -15,6 +15,7 @@ export type IconName =
   | 'chevronUp'
   | 'play'
   | 'pause'
+  | 'alert'
 
 interface IconProps extends Omit<SVGProps<SVGSVGElement>, 'name'> {
   name: IconName
@@ -35,6 +36,7 @@ const STROKE: Partial<Record<IconName, string>> = {
   arrowRight: 'M5 12h14M12 5l7 7-7 7',
   play: 'M8 5v14l11-7z',
   pause: 'M6 4h4v16H6zM14 4h4v16h-4z',
+  alert: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18ZM12 8v4M12 16h.01',
   sun: 'M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10ZM12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42',
   moon: 'M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z',
   monitor: 'M2 4h20v12H2zM8 21h8M12 16v5',

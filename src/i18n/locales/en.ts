@@ -16,6 +16,8 @@ export default {
   miniPlayer: {
     play: 'Play',
     pause: 'Pause',
+    loading: 'Loading…',
+    error: 'Audio failed to load',
   },
   about: {
     eyebrow: 'About',

@@ -16,6 +16,8 @@ export default {
   miniPlayer: {
     play: '播放',
     pause: '暂停',
+    loading: '加载中…',
+    error: '音频加载失败',
   },
   about: {
     eyebrow: '关于',

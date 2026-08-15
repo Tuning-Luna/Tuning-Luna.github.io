@@ -91,3 +91,83 @@
 .mini-player__play:active::after {
   opacity: 0.12;
 }
+
+/* Loading state: the button is inert while audio data is buffering. */
+.mini-player__play:disabled {
+  cursor: default;
+  box-shadow: var(--md-sys-elevation-level0);
+}
+
+/* Error state: signals a failed load; clicking retries. */
+.mini-player__play.is-error {
+  background-color: var(--md-sys-color-error);
+  color: var(--md-sys-color-on-error);
+  box-shadow: var(--md-sys-elevation-level1);
+}
+
+/* Play/pause icons crossfade with a slight rotate + scale (MD3 emphasized). */
+.mini-player__icons {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.mini-player__icon {
+  position: absolute;
+  inset: 0;
+  transition:
+    opacity var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-emphasized-decelerate),
+    transform var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-emphasized-decelerate);
+}
+
+.mini-player__icon--play {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.mini-player__icon--pause {
+  opacity: 0;
+  transform: rotate(-25deg) scale(0.5);
+}
+
+.mini-player__play.is-playing .mini-player__icon--play {
+  opacity: 0;
+  transform: rotate(25deg) scale(0.5);
+}
+
+.mini-player__play.is-playing .mini-player__icon--pause {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.mini-player__spinner {
+  width: 22px;
+  height: 22px;
+  border-radius: var(--md-sys-shape-corner-full);
+  border: 2px solid color-mix(in srgb, currentColor 25%, transparent);
+  border-top-color: currentColor;
+  animation:
+    mini-player-spin 0.8s linear infinite,
+    mini-player-fade-in var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard);
+}
+
+@keyframes mini-player-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes mini-player-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mini-player__spinner {
+    animation: none;
+  }
+}
