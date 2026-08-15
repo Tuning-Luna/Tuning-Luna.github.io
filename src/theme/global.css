@@ -288,10 +288,6 @@ a:hover {
   margin-bottom: var(--md-sys-spacing-md);
 }
 
-.layout__hero .hero__actions {
-  margin-top: var(--md-sys-spacing-lg);
-}
-
 .layout__hero .container {
   max-width: none;
   padding-inline: 0;

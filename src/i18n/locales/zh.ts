@@ -1,16 +1,23 @@
 export default {
   nav: {
     about: '关于',
-    stack: '技术栈',
+    pageViews: '访问量',
     projects: '项目',
-    activity: '动态',
+    nowPlaying: '正在播放',
     contact: '联系',
+    stack: '技术栈',
+    activity: '动态',
   },
   hero: {
     bio: '你读了这段话，说明今天的社交额度已经用完了。',
     ctaProjects: '查看项目',
     ctaGithub: 'GitHub',
     ctaTelegram: 'Telegram',
+    stats: {
+      repos: '公开仓库',
+      stars: 'Star 总数',
+      followers: '关注者',
+    },
   },
   miniPlayer: {
     play: '播放',

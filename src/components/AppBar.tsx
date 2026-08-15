@@ -6,10 +6,12 @@ import './AppBar.css'
 
 const NAV_ITEMS = [
   { id: 'about', key: 'nav.about' },
-  // { id: 'stack', key: 'nav.stack' },
+  { id: 'page-views', key: 'nav.pageViews' },
   { id: 'projects', key: 'nav.projects' },
-  // { id: 'activity', key: 'nav.activity' },
+  { id: 'now-playing', key: 'nav.nowPlaying' },
   { id: 'contact', key: 'nav.contact' },
+  // { id: 'stack', key: 'nav.stack' },
+  // { id: 'activity', key: 'nav.activity' },
 ] as const
 
 export function AppBar() {

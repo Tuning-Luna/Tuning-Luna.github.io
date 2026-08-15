@@ -1,16 +1,23 @@
 export default {
   nav: {
     about: 'About',
-    stack: 'Tech Stack',
+    pageViews: 'Page Views',
     projects: 'Projects',
-    activity: 'Activity',
+    nowPlaying: 'Now Playing',
     contact: 'Contact',
+    stack: 'Tech Stack',
+    activity: 'Activity',
   },
   hero: {
     bio: "You read my bio. That's enough social interaction for one day.",
     ctaProjects: 'View Projects',
     ctaGithub: 'GitHub',
     ctaTelegram: 'Telegram',
+    stats: {
+      repos: 'Public repos',
+      stars: 'Total stars',
+      followers: 'Followers',
+    },
   },
   miniPlayer: {
     play: 'Play',
