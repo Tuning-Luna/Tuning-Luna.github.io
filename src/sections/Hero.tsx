@@ -24,6 +24,9 @@ export function Hero() {
           <Button href={profile.githubUrl} variant="tonal">
             {t('hero.ctaGithub')}
           </Button>
+          <Button href={profile.telegramUrl} variant="tonal">
+            {t('hero.ctaTelegram')}
+          </Button>
         </div>
         <MiniPlayer />
       </div>

@@ -10,6 +10,7 @@ export default {
     bio: '你读了这段话，说明今天的社交额度已经用完了。',
     ctaProjects: '查看项目',
     ctaGithub: 'GitHub',
+    ctaTelegram: 'Telegram',
   },
   miniPlayer: {
     play: '播放',

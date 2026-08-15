@@ -10,6 +10,7 @@ export default {
     bio: "You read my bio. That's enough social interaction for one day.",
     ctaProjects: 'View Projects',
     ctaGithub: 'GitHub',
+    ctaTelegram: 'Telegram',
   },
   miniPlayer: {
     play: 'Play',
