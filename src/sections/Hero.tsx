@@ -18,8 +18,6 @@ export function Hero() {
           referrerPolicy="no-referrer"
         />
         <h1 className="hero__name">{profile.name}</h1>
-        <p className="hero__role">{t('hero.role')}</p>
-        <p className="hero__tagline">{t('hero.tagline')}</p>
         <p className="hero__bio">{t('hero.bio')}</p>
         <div className="hero__actions">
           <Button href="#projects">{t('hero.ctaProjects')}</Button>

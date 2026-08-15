@@ -7,8 +7,6 @@ export default {
     contact: '联系',
   },
   hero: {
-    role: '合肥工业大学 · 计算机科学专业',
-    tagline: 'Always Learning, Always Building',
     bio: '你读了这段话，说明今天的社交额度已经用完了。',
     ctaProjects: '查看项目',
     ctaGithub: 'GitHub',
@@ -41,8 +39,6 @@ export default {
   },
   projects: {
     eyebrow: '项目',
-    title: '开源项目',
-    subtitle: '我的 GitHub 仓库——Star 与 Fork 数量为快照日期的真实数据，不含 fork 项目。',
     featuredTitle: '精选项目',
     moreTitle: '课程设计与其他',
     stars: 'Star',

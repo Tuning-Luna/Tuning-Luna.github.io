@@ -7,8 +7,6 @@ export default {
     contact: 'Contact',
   },
   hero: {
-    role: 'CS Student @ Hefei University of Technology',
-    tagline: 'Always Learning, Always Building',
     bio: "You read my bio. That's enough social interaction for one day.",
     ctaProjects: 'View Projects',
     ctaGithub: 'GitHub',
@@ -46,9 +44,6 @@ export default {
   },
   projects: {
     eyebrow: 'Projects',
-    title: 'Open Source',
-    subtitle:
-      'My repositories on GitHub — real star and fork counts as of the snapshot date. Forks are excluded.',
     featuredTitle: 'Featured',
     moreTitle: 'Course projects & more',
     stars: 'Stars',

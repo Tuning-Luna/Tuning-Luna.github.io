@@ -32,20 +32,6 @@
   line-height: var(--md-sys-typescale-headline-large-line-height);
 }
 
-.hero__role {
-  font-size: var(--md-sys-typescale-title-large-size);
-  font-weight: var(--md-sys-typescale-title-large-weight);
-  line-height: var(--md-sys-typescale-title-large-line-height);
-  color: var(--md-sys-color-on-surface-variant);
-}
-
-.hero__tagline {
-  font-size: var(--md-sys-typescale-body-large-size);
-  line-height: var(--md-sys-typescale-body-large-line-height);
-  color: var(--md-sys-color-primary);
-  font-weight: 500;
-}
-
 .hero__bio {
   max-width: 44ch;
   font-size: var(--md-sys-typescale-body-medium-size);
