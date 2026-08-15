@@ -101,6 +101,8 @@ export default {
     title: 'Find Me',
     subtitle: 'Open-source projects and my music.',
     github: { label: 'GitHub', desc: 'Open source & code' },
+    gmail: { label: 'Gmail', desc: 'Email me' },
+    discord: { label: 'Discord', desc: 'Chat with me' },
     spotify: { label: 'Spotify', desc: 'My playlists' },
   },
   nowPlaying: {

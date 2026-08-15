@@ -87,6 +87,8 @@ export default {
     title: '找到我',
     subtitle: '开源项目，以及我听的歌。',
     github: { label: 'GitHub', desc: '开源与代码' },
+    gmail: { label: 'Gmail', desc: '给我发邮件' },
+    discord: { label: 'Discord', desc: '和我聊天' },
     spotify: { label: 'Spotify', desc: '我的歌单' },
   },
   nowPlaying: {
