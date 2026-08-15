@@ -30,6 +30,11 @@ export default {
       'Open Source & Study Materials',
     ],
   },
+  pageViews: {
+    eyebrow: 'Site Stats',
+    title: 'Page Views',
+    alt: 'Page views counter',
+  },
   stack: {
     eyebrow: 'Tech Stack',
     title: 'Tools & Technologies',

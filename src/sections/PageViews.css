@@ -1,0 +1,11 @@
+.page-views {
+  /* No mask — the badge sits directly on the background, just centered. */
+  display: flex;
+  justify-content: center;
+}
+
+.page-views__badge {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}

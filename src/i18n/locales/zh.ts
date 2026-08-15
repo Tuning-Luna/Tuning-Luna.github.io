@@ -25,6 +25,11 @@ export default {
     focusTitle: '关注的方向',
     focus: ['Web 全栈', '爬虫与逆向', '机器学习', '开源与学习资料'],
   },
+  pageViews: {
+    eyebrow: '站点统计',
+    title: '访问量',
+    alt: '访问量计数器',
+  },
   stack: {
     eyebrow: '技术栈',
     title: '工具与技术',

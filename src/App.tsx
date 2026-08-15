@@ -7,6 +7,7 @@ import { About } from './sections/About'
 import { Contact } from './sections/Contact'
 import { Hero } from './sections/Hero'
 import { NowPlaying } from './sections/NowPlaying'
+import { PageViews } from './sections/PageViews'
 import { Projects } from './sections/Projects'
 // import { TechStack } from './sections/TechStack'
 
@@ -46,6 +47,7 @@ export default function App() {
           <main>
             <About />
             {/* <TechStack /> */}
+            <PageViews />
             <Projects />
             {/* <Activity /> */}
             <NowPlaying />
