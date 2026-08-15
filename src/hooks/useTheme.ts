@@ -5,10 +5,11 @@ export type ThemeMode = 'system' | 'light' | 'dark'
 const STORAGE_KEY = 'tuning-luna-theme'
 
 function getInitialMode(): ThemeMode {
-  if (typeof window === 'undefined') return 'system'
+  if (typeof window === 'undefined') return 'dark'
   const stored = window.localStorage.getItem(STORAGE_KEY)
   if (stored === 'light' || stored === 'dark' || stored === 'system') return stored
-  return 'system'
+  // Default to dark, regardless of the OS preference.
+  return 'dark'
 }
 
 /** Reflects the active mode on <html data-theme> and on the <meta name="theme-color">. */

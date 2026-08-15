@@ -5,12 +5,13 @@ import zh from './locales/zh'
 
 const STORAGE_KEY = 'tuning-luna-lang'
 
-/** Chinese is the default; respect a previously saved choice, else browser language. */
+/** English is the default, regardless of the browser language; respect a
+ *  previously saved choice. The user can still switch languages manually. */
 function detectLanguage(): 'zh' | 'en' {
-  if (typeof window === 'undefined') return 'zh'
+  if (typeof window === 'undefined') return 'en'
   const stored = window.localStorage.getItem(STORAGE_KEY)
   if (stored === 'zh' || stored === 'en') return stored
-  return navigator.language.toLowerCase().startsWith('zh') ? 'zh' : 'en'
+  return 'en'
 }
 
 const initial = detectLanguage()
@@ -21,7 +22,7 @@ void i18n.use(initReactI18next).init({
     zh: { translation: zh },
   },
   lng: initial,
-  fallbackLng: 'zh',
+  fallbackLng: 'en',
   interpolation: { escapeValue: false },
 })
 
