@@ -20,9 +20,17 @@
   width: 128px;
   height: 128px;
   border-radius: var(--md-sys-shape-corner-full);
-  border: 4px solid var(--md-sys-color-surface-container-high);
-  box-shadow: var(--md-sys-elevation-level2);
+  /* MD3 tonal ring around the avatar + soft elevation. */
+  box-shadow:
+    var(--md-sys-elevation-level2),
+    0 0 0 4px var(--md-sys-color-primary-container);
   margin-bottom: var(--md-sys-spacing-lg);
+  /* Slow, subtle scale-up on hover. */
+  transition: transform var(--md-sys-motion-duration-medium1) var(--md-sys-motion-easing-emphasized-decelerate);
+}
+
+.hero__avatar:hover {
+  transform: scale(1.05);
 }
 
 .hero__name {
@@ -37,12 +45,42 @@
   font-size: var(--md-sys-typescale-body-medium-size);
   line-height: var(--md-sys-typescale-body-medium-line-height);
   color: var(--md-sys-color-on-surface-variant);
+  margin-top: var(--md-sys-spacing-sm);
+}
+
+/* Compact stats strip between the bio and the action buttons. */
+.hero__stats {
+  display: flex;
+  align-items: center;
+  margin-top: var(--md-sys-spacing-lg);
+}
+
+.hero__stats .m3-stat {
+  flex: 1;
+  padding-inline: var(--md-sys-spacing-md);
+}
+
+.hero__stats .m3-stat + .m3-stat {
+  border-left: 1px solid var(--md-glass-border);
+}
+
+/* Keep each stat label on a single line. */
+.hero__stats .m3-stat__label {
+  white-space: nowrap;
 }
 
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: var(--md-sys-spacing-lg);
-  margin-top: var(--md-sys-spacing-xl);
+  gap: var(--md-sys-spacing-sm);
+  margin-top: var(--md-sys-spacing-lg);
+}
+
+/* Compact buttons for the narrow sidebar. All three share the same width —
+   the primary CTA on its own row, the two tonal contact buttons side by side
+   below it. */
+.hero__actions .m3-button {
+  padding-inline: var(--md-sys-spacing-md);
+  width: calc((100% - var(--md-sys-spacing-sm)) / 2);
 }

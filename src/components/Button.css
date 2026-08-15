@@ -52,7 +52,15 @@
   opacity: 0.12;
 }
 
-.m3-button__label,
+.m3-button__label {
+  position: relative;
+  z-index: 1;
+  /* Inline flex so an icon + text inside a button stay vertically centred. */
+  display: inline-flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-xs);
+}
+
 .m3-button__icon {
   position: relative;
   z-index: 1;
