@@ -1,44 +1,60 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Tuning-Luna's personal homepage — CS student at HFUT. Bio, tech stack, open-source projects and GitHub activity."
-    />
-    <meta name="theme-color" content="#10140f" />
-    <title>Tuning-Luna · Personal Homepage</title>
-    <!-- Webfonts (CDN only — no Google Fonts, which is blocked in mainland China):
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Tuning-Luna's personal homepage — CS student at HFUT. Bio, tech stack, open-source projects and GitHub activity." />
+  <meta name="theme-color" content="#10140f" />
+  <!-- Social sharing (Open Graph / Twitter Card) — the image is the site
+        screenshot in public/screenshot.png. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Tuning-Luna" />
+  <meta property="og:title" content="Tuning-Luna · Personal Homepage" />
+  <meta property="og:description"
+    content="Tuning-Luna's personal homepage — CS student at HFUT. Bio, tech stack, open-source projects and GitHub activity." />
+  <meta property="og:url" content="https://tuning-luna.github.io/" />
+  <meta property="og:image" content="https://tuning-luna.github.io/screenshot.png" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tuning-Luna · Personal Homepage" />
+  <meta name="twitter:description"
+    content="Tuning-Luna's personal homepage — CS student at HFUT. Bio, tech stack, open-source projects and GitHub activity." />
+  <meta name="twitter:image" content="https://tuning-luna.github.io/screenshot.png" />
+  <title>Tuning-Luna · Personal Homepage</title>
+  <!-- Webfonts (CDN only — no Google Fonts, which is blocked in mainland China):
          Manrope (display/headlines) + Inter (body/UI) from fontsource on jsDelivr;
          Maple Mono NF CN from ZeoSeven for mono accents (tech chips, stats, section
          labels). Chinese text uses the platform system fonts (PingFang SC / Microsoft
          YaHei / Noto Sans SC), so no multi-MB CJK webfont is shipped. All three CDNs
          set font-display: swap, so text shows in the fallback stack (tokens.css)
          while the fonts load. -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/manrope@5.3.0/latin.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.3.0/latin.css" />
-    <link rel="stylesheet" href="https://fontsapi.zeoseven.com/442/main/result.css" />
-    <script>
-      // Apply the saved (or default dark / English) preferences before first
-      // paint so the page never flashes light/Chinese — regardless of the
-      // visitor's OS or browser language.
-      (function () {
-        try {
-          var theme = localStorage.getItem('tuning-luna-theme')
-          if (theme !== 'light' && theme !== 'dark' && theme !== 'system') theme = 'dark'
-          if (theme !== 'system') document.documentElement.setAttribute('data-theme', theme)
-          var lang = localStorage.getItem('tuning-luna-lang')
-          document.documentElement.lang = lang === 'zh' ? 'zh' : 'en'
-        } catch (err) {
-          /* ignore storage errors (e.g. private mode) */
-        }
-      })()
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/manrope@5.3.0/latin.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.3.0/latin.css" />
+  <link rel="stylesheet" href="https://fontsapi.zeoseven.com/442/main/result.css" />
+  <script>
+    // Apply the saved (or default dark / English) preferences before first
+    // paint so the page never flashes light/Chinese — regardless of the
+    // visitor's OS or browser language.
+    (function () {
+      try {
+        var theme = localStorage.getItem('tuning-luna-theme')
+        if (theme !== 'light' && theme !== 'dark' && theme !== 'system') theme = 'dark'
+        if (theme !== 'system') document.documentElement.setAttribute('data-theme', theme)
+        var lang = localStorage.getItem('tuning-luna-lang')
+        document.documentElement.lang = lang === 'zh' ? 'zh' : 'en'
+      } catch (err) {
+        /* ignore storage errors (e.g. private mode) */
+      }
+    })()
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>
