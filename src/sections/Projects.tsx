@@ -11,7 +11,11 @@ export function Projects() {
   const { t } = useTranslation()
 
   return (
-    <Section id="projects" eyebrow={t('projects.eyebrow')}>
+    <Section
+      id="projects"
+      eyebrow={t('projects.eyebrow')}
+      title={t('projects.title')}
+    >
       <h3 className="projects__subhead">{t('projects.featuredTitle')}</h3>
       <div className="projects__grid">
         {featuredProjects.map((project) => (

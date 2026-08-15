@@ -49,6 +49,7 @@ export default {
   },
   projects: {
     eyebrow: 'Projects',
+    title: 'Open Source',
     featuredTitle: 'Featured',
     moreTitle: 'Course projects & more',
     stars: 'Stars',

@@ -44,6 +44,7 @@ export default {
   },
   projects: {
     eyebrow: '项目',
+    title: '开源项目',
     featuredTitle: '精选项目',
     moreTitle: '课程设计与其他',
     stars: 'Star',
