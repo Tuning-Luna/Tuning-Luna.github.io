@@ -39,6 +39,7 @@
 }
 
 .m3-section__eyebrow {
+  font-family: var(--md-ref-typeface-mono);
   font-size: var(--md-sys-typescale-label-large-size);
   font-weight: var(--md-sys-typescale-label-large-weight);
   letter-spacing: 0.08em;
@@ -47,6 +48,7 @@
 }
 
 .m3-section__title {
+  font-family: var(--md-ref-typeface-display);
   font-size: var(--md-sys-typescale-headline-medium-size);
   font-weight: var(--md-sys-typescale-headline-medium-weight);
   line-height: var(--md-sys-typescale-headline-medium-line-height);

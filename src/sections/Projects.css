@@ -1,4 +1,5 @@
 .projects__subhead {
+  font-family: var(--md-ref-typeface-display);
   font-size: var(--md-sys-typescale-title-large-size);
   font-weight: var(--md-sys-typescale-title-large-weight);
   line-height: var(--md-sys-typescale-title-large-line-height);

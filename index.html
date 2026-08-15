@@ -10,6 +10,16 @@
     />
     <meta name="theme-color" content="#10140f" />
     <title>Tuning-Luna · Personal Homepage</title>
+    <!-- Webfonts (CDN only — no Google Fonts, which is blocked in mainland China):
+         Manrope (display/headlines) + Inter (body/UI) from fontsource on jsDelivr;
+         Maple Mono NF CN from ZeoSeven for mono accents (tech chips, stats, section
+         labels). Chinese text uses the platform system fonts (PingFang SC / Microsoft
+         YaHei / Noto Sans SC), so no multi-MB CJK webfont is shipped. All three CDNs
+         set font-display: swap, so text shows in the fallback stack (tokens.css)
+         while the fonts load. -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/manrope@5.3.0/latin.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.3.0/latin.css" />
+    <link rel="stylesheet" href="https://fontsapi.zeoseven.com/442/main/result.css" />
     <script>
       // Apply the saved (or default dark / English) preferences before first
       // paint so the page never flashes light/Chinese — regardless of the

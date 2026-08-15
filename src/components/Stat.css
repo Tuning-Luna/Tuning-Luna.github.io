@@ -9,6 +9,7 @@
 }
 
 .m3-stat__value {
+  font-family: var(--md-ref-typeface-mono);
   font-size: var(--md-sys-typescale-headline-small-size);
   font-weight: var(--md-sys-typescale-headline-small-weight);
   line-height: var(--md-sys-typescale-headline-small-line-height);

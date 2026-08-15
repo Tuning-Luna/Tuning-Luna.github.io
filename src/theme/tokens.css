@@ -7,9 +7,18 @@
 @import './colors.css';
 
 :root {
-  /* --- Typography (M3 type scale; Roboto-first Latin with CJK fallbacks) --- */
-  --md-ref-typeface: Roboto, 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei',
+  /* --- Typography (M3 type scale). Three role-specific families, all loaded
+     in index.html: Manrope for display/headlines, Inter for body/UI, and Maple
+     Mono NF CN for mono accents (tech chips, stat numbers, section labels).
+     CJK text falls through to the platform system fonts (PingFang SC on macOS,
+     Microsoft YaHei on Windows, Noto Sans SC on Linux/Android) — the mainstream,
+     zero-download choice for Chinese–English mixed sites. --- */
+  --md-ref-typeface: 'Inter', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei',
     system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --md-ref-typeface-display: 'Manrope', 'Inter', 'Noto Sans SC', 'PingFang SC',
+    'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  --md-ref-typeface-mono: 'Maple Mono NF CN', ui-monospace, 'Cascadia Code',
+    'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
 
   --md-sys-typescale-display-small-size: 36px;
   --md-sys-typescale-display-small-weight: 400;

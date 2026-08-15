@@ -26,6 +26,7 @@
 }
 
 .hero__name {
+  font-family: var(--md-ref-typeface-display);
   font-size: var(--md-sys-typescale-headline-large-size);
   font-weight: var(--md-sys-typescale-headline-large-weight);
   line-height: var(--md-sys-typescale-headline-large-line-height);
