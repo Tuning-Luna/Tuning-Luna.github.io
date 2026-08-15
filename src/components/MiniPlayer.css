@@ -7,11 +7,24 @@
   gap: var(--md-sys-spacing-lg);
   width: 100%;
   padding: var(--md-sys-spacing-md);
-  background-color: var(--md-sys-color-surface-container-low);
+  background-color: color-mix(
+    in srgb,
+    var(--md-sys-color-surface-container-low) calc(var(--md-glass-opacity) * 100%),
+    transparent
+  );
+  -webkit-backdrop-filter: blur(var(--md-glass-blur)) saturate(var(--md-glass-saturate));
+  backdrop-filter: blur(var(--md-glass-blur)) saturate(var(--md-glass-saturate));
+  border: 1px solid var(--md-glass-border);
   border-radius: var(--md-sys-shape-corner-large);
-  box-shadow: var(--md-sys-elevation-level1);
+  box-shadow: var(--md-sys-elevation-level1), var(--md-glass-highlight);
   margin-top: var(--md-sys-spacing-lg);
-  transition: box-shadow var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard);
+  transition:
+    box-shadow var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard),
+    transform var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-emphasized-decelerate);
+}
+
+.mini-player:hover {
+  transform: translateY(-2px);
 }
 
 .mini-player__cover {
@@ -64,7 +77,8 @@
   color: var(--md-sys-color-on-primary);
   cursor: pointer;
   overflow: hidden;
-  box-shadow: var(--md-sys-elevation-level1);
+  /* M3 filled icon button: elevation 0 at rest, 1 on hover. */
+  box-shadow: var(--md-sys-elevation-level0);
   transition:
     box-shadow var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard),
     background-color var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard);
@@ -80,7 +94,7 @@
 }
 
 .mini-player__play:hover {
-  box-shadow: var(--md-sys-elevation-level2);
+  box-shadow: var(--md-sys-elevation-level1);
 }
 
 .mini-player__play:hover::after,

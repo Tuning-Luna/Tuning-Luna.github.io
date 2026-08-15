@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import coverUrl from '../assets/stan-cover.jpg'
 import audioUrl from '../assets/Stan-Eminem Dido-The_Marshall_Mathers_LP.mp3'
+import { handleSpotlight } from '../hooks/useSpotlight'
 import { Icon } from './Icon'
 import './MiniPlayer.css'
 
@@ -100,7 +101,7 @@ export function MiniPlayer() {
         : t('miniPlayer.play')
 
   return (
-    <div className="mini-player">
+    <div className="mini-player spotlight" onMouseMove={handleSpotlight}>
       <audio ref={audioRef} src={audioUrl} preload="metadata" />
       <img className="mini-player__cover" src={coverUrl} alt="" />
       <span className="mini-player__info">

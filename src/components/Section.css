@@ -2,11 +2,32 @@
 
 .m3-section {
   padding-block: var(--md-sys-spacing-2xl);
+  /* Scroll-reveal: JS adds `.pre-reveal`, IntersectionObserver removes it when
+     the section enters the viewport, animating a fade + rise. */
+  transition:
+    opacity var(--md-sys-motion-duration-medium1) var(--md-sys-motion-easing-emphasized-decelerate),
+    transform var(--md-sys-motion-duration-medium1) var(--md-sys-motion-easing-emphasized-decelerate);
+}
+
+.m3-section.pre-reveal {
+  opacity: 0;
+  transform: translateY(24px);
 }
 
 @media (min-width: 720px) {
   .m3-section {
     padding-block: var(--md-sys-spacing-3xl);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .m3-section {
+    transition: none;
+  }
+
+  .m3-section.pre-reveal {
+    opacity: 1;
+    transform: none;
   }
 }
 

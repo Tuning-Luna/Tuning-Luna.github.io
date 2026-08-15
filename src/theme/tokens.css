@@ -115,4 +115,31 @@
   --md-sys-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
   --md-sys-motion-easing-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
   --md-sys-motion-easing-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
+
+  /* --- Glassmorphism (frosted-glass surfaces) ---
+     Surfaces are the MD3 colour roles mixed with transparency, blurred and
+     boosted with `saturate()` via backdrop-filter. Opacity is theme-aware:
+     lighter in dark mode so the vivid background image shows through. */
+  --md-glass-blur: 20px;
+  --md-glass-saturate: 150%;
+  /* Light mode needs a lower opacity so the background image still shows
+     through the frosted surfaces — otherwise the glass is invisible on the
+     washed-out light background. */
+  --md-glass-opacity-light: 0.6;
+  --md-glass-opacity-dark: 0.6;
+  --md-glass-opacity: var(--md-glass-opacity-light);
+  /* Subtle edge for frosted surfaces (M3 outline-variant at low alpha). */
+  --md-glass-border: color-mix(in srgb, var(--md-sys-color-outline-variant) 32%, transparent);
+  /* Bright top edge that makes a translucent surface read as "glass". */
+  --md-glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --md-glass-opacity: var(--md-glass-opacity-dark);
+  }
+}
+
+:root[data-theme='dark'] {
+  --md-glass-opacity: var(--md-glass-opacity-dark);
 }

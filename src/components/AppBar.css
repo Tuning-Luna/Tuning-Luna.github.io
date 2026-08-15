@@ -5,10 +5,15 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: color-mix(in srgb, var(--md-sys-color-surface-container) 92%, transparent);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  /* Frosted-glass app bar over the scrolling content. */
+  background-color: color-mix(
+    in srgb,
+    var(--md-sys-color-surface-container) calc(var(--md-glass-opacity) * 100%),
+    transparent
+  );
+  -webkit-backdrop-filter: blur(var(--md-glass-blur)) saturate(var(--md-glass-saturate));
+  backdrop-filter: blur(var(--md-glass-blur)) saturate(var(--md-glass-saturate));
+  border-bottom: 1px solid var(--md-glass-border);
 }
 
 .appbar__inner {

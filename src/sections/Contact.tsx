@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { Icon, type IconName } from '../components/Icon'
 import { Section } from '../components/Section'
 import { profile } from '../data/profile'
+import { handleSpotlight } from '../hooks/useSpotlight'
 import './Contact.css'
 
 interface ContactLink {
@@ -29,10 +30,11 @@ export function Contact() {
         {LINKS.map((link) => (
           <a
             key={link.id}
-            className="contact__card"
+            className="contact__card spotlight"
             href={link.href}
             target="_blank"
             rel="noreferrer noopener"
+            onMouseMove={handleSpotlight}
           >
             <Icon name={link.icon} size={28} />
             <span className="contact__card-label">{t(`contact.${link.id}.label`)}</span>

@@ -3,7 +3,14 @@
   grid-template-columns: repeat(2, 1fr);
   gap: var(--md-sys-spacing-2xl);
   padding: var(--md-sys-spacing-2xl);
-  background-color: var(--md-sys-color-surface-container-low);
+  background-color: color-mix(
+    in srgb,
+    var(--md-sys-color-surface-container-low) calc(var(--md-glass-opacity) * 100%),
+    transparent
+  );
+  -webkit-backdrop-filter: blur(var(--md-glass-blur)) saturate(var(--md-glass-saturate));
+  backdrop-filter: blur(var(--md-glass-blur)) saturate(var(--md-glass-saturate));
+  border: 1px solid var(--md-glass-border);
   border-radius: var(--md-sys-shape-corner-large);
 }
 

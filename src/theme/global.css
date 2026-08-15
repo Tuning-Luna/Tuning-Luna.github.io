@@ -79,7 +79,9 @@ svg {
   content: '';
   position: absolute;
   inset: 0;
-  background-color: color-mix(in srgb, var(--md-sys-color-background) 80%, transparent);
+  /* Lighter mask in light mode so the dark image still shows through and the
+     frosted surfaces have something colourful to blur. */
+  background-color: color-mix(in srgb, var(--md-sys-color-background) 68%, transparent);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -173,12 +175,111 @@ a:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* Floating frosted-glass panel over the fixed background. */
+  background-color: color-mix(
+    in srgb,
+    var(--md-sys-color-surface-container-low) calc(var(--md-glass-opacity) * 100%),
+    transparent
+  );
+  -webkit-backdrop-filter: blur(var(--md-glass-blur)) saturate(var(--md-glass-saturate));
+  backdrop-filter: blur(var(--md-glass-blur)) saturate(var(--md-glass-saturate));
+  border: 1px solid var(--md-glass-border);
+  border-radius: var(--md-sys-shape-corner-extra-large);
+  box-shadow: var(--md-sys-elevation-level1), var(--md-glass-highlight);
+}
+
+/* Cursor halo on the personal panel. The aside is already `position: sticky`
+   (a positioned element), so it gets its own ::before instead of the
+   `.spotlight` class — adding that class would set `position: relative` and
+   override sticky. */
+.layout__hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    240px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    color-mix(in srgb, var(--md-sys-color-primary) 12%, transparent),
+    color-mix(in srgb, var(--md-sys-color-primary) 4%, transparent) 40%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.layout__hero:hover::before {
+  opacity: 1;
+}
+
+/* Entrance animation runs on the hero *content*, not on the sticky aside —
+   a transform animation on a `position: sticky` element breaks its stickiness
+   in Chromium, making the sidebar scroll out of view. */
+.layout__hero .hero {
+  animation: hero-in var(--md-sys-motion-duration-medium1) var(--md-sys-motion-easing-emphasized-decelerate)
+    both;
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layout__hero .hero {
+    animation: none;
+  }
+}
+
+/* --- Cursor spotlight: a faint light halo that follows the mouse over a
+   "personal" card (hero panel, contact cards, music player). Position is set
+   by JS via --spot-x / --spot-y. --- */
+
+.spotlight {
+  position: relative;
+}
+
+.spotlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    240px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    color-mix(in srgb, var(--md-sys-color-primary) 12%, transparent),
+    color-mix(in srgb, var(--md-sys-color-primary) 4%, transparent) 40%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.spotlight:hover::before {
+  opacity: 1;
+}
+
+/* Keep card content above the halo. */
+.spotlight > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* Compact the hero inside the sidebar; the aside owns the gutter. Tighter
    spacing keeps the whole stack (embed + avatar + text + actions) from
    overflowing the fixed panel on shorter screens. */
 .layout__hero .hero {
+  /* Keep the hero content above the cursor halo. */
+  position: relative;
+  z-index: 1;
   padding-block: var(--md-sys-spacing-sm);
   background: none;
 }
@@ -211,6 +312,19 @@ a:hover {
     padding: 0;
     overflow: visible;
     order: -1;
+    /* Drop the glass panel on single-column layouts; the hero is a plain
+       section again. */
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  /* Disable the cursor halo on single-column layouts (no fixed panel). */
+  .layout__hero::before {
+    display: none;
   }
 
   /* Restore the hero's own padding and tint once it scrolls in the single column. */
