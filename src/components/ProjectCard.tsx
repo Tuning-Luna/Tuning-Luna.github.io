@@ -27,13 +27,15 @@ export function ProjectCard({ project }: { project: Project }) {
       </p>
       <div className="project-card__meta">
         <Chip>{project.language}</Chip>
-        <span className="project-card__stat" title={t('projects.stars')}>
-          <Icon name="star" size={15} />
-          {project.stars}
-        </span>
-        <span className="project-card__stat" title={t('projects.forks')}>
-          <Icon name="fork" size={15} />
-          {project.forks}
+        <span className="project-card__stats">
+          <span className="project-card__stat" title={t('projects.stars')}>
+            <Icon name="star" size={15} />
+            {project.stars}
+          </span>
+          <span className="project-card__stat" title={t('projects.forks')}>
+            <Icon name="fork" size={15} />
+            {project.forks}
+          </span>
         </span>
       </div>
       <div className="project-card__actions">

@@ -44,8 +44,20 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--md-sys-spacing-sm) var(--md-sys-spacing-md);
+  gap: var(--md-sys-spacing-sm);
   margin-top: auto;
+}
+
+/* Star & fork are grouped so they always stay on the same line, even in the
+   narrowest card. */
+.project-card__stats {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-sm);
+}
+
+.project-card__meta .m3-chip {
+  padding-inline: var(--md-sys-spacing-md);
 }
 
 .project-card__stat {

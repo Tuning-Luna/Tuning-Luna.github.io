@@ -39,6 +39,9 @@ export default function App() {
       <AppBar />
       {/* Split layout: fixed hero panel on the right, scrolling content on the left. */}
       <div className="layout">
+        <aside className="layout__hero" onMouseMove={handleSpotlight}>
+          <Hero />
+        </aside>
         <div className="layout__content">
           <main>
             <About />
@@ -50,9 +53,6 @@ export default function App() {
           </main>
           <Footer />
         </div>
-        <aside className="layout__hero" onMouseMove={handleSpotlight}>
-          <Hero />
-        </aside>
       </div>
     </>
   )
