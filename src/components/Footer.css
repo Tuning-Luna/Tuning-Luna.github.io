@@ -3,14 +3,8 @@
   z-index: 1;
   margin-top: var(--md-sys-spacing-4xl);
   padding-block: var(--md-sys-spacing-2xl);
-  border-top: 1px solid var(--md-glass-border);
-  background-color: color-mix(
-    in srgb,
-    var(--md-sys-color-surface-container-low) calc(var(--md-glass-opacity) * 100%),
-    transparent
-  );
-  -webkit-backdrop-filter: blur(var(--md-glass-blur)) saturate(var(--md-glass-saturate));
-  backdrop-filter: blur(var(--md-glass-blur)) saturate(var(--md-glass-saturate));
+  /* No separate mask: the footer is transparent over the fixed background,
+     only its text remains. */
 }
 
 .m3-footer__inner {
