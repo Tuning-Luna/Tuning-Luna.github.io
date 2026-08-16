@@ -3,15 +3,16 @@
 .m3-section {
   padding-block: var(--md-sys-spacing-2xl);
   /* Scroll-reveal: JS adds `.pre-reveal`, IntersectionObserver removes it when
-     the section enters the viewport, animating a fade + rise. */
+     the section enters the viewport, animating a slow fade + rise from below
+     (medium2 / 40px). */
   transition:
-    opacity var(--md-sys-motion-duration-medium1) var(--md-sys-motion-easing-emphasized-decelerate),
-    transform var(--md-sys-motion-duration-medium1) var(--md-sys-motion-easing-emphasized-decelerate);
+    opacity var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized-decelerate),
+    transform var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized-decelerate);
 }
 
 .m3-section.pre-reveal {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(40px);
 }
 
 @media (min-width: 720px) {

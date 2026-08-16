@@ -11,6 +11,30 @@
   margin-bottom: var(--md-sys-spacing-lg);
 }
 
+/* Typewriter block: its height is reserved (min-height set by About.tsx from a
+   measurement), so text typing in never pushes the sections below down. */
+.about__type {
+  position: relative;
+  /* BFC (overflow) so the last paragraph's margin stays contained — otherwise
+     it would collapse out and the reserved height would be ~16px too tall. */
+  overflow: hidden;
+  /* Only animates when the reserved height itself changes (e.g. language
+     switch); typing inside a fixed min-height never triggers it. */
+  transition: min-height var(--md-sys-motion-duration-medium1) var(--md-sys-motion-easing-standard);
+}
+
+/* Hidden clone of the full paragraphs used to measure the final height.
+   Absolutely positioned so it never affects layout. */
+.about__type-measure {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  visibility: hidden;
+  overflow: hidden;
+  pointer-events: none;
+}
+
 .about__focus {
   margin-top: var(--md-sys-spacing-2xl);
 }
@@ -26,4 +50,27 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--md-sys-spacing-sm);
+}
+
+/* Blinking cursor shown at the end of the paragraph currently being typed. */
+.type-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background-color: var(--md-sys-color-primary);
+  animation: caret-blink 1s steps(2, start) infinite;
+}
+
+@keyframes caret-blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .type-caret {
+    animation: none;
+  }
 }
