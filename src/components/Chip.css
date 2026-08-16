@@ -17,8 +17,3 @@
   line-height: var(--md-sys-typescale-label-large-line-height);
   white-space: nowrap;
 }
-
-.m3-chip__code {
-  color: var(--md-sys-color-primary);
-  font-size: 0.85em;
-}
