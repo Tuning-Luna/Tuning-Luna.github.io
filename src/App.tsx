@@ -10,7 +10,7 @@ import { MiniPlayer } from './sections/MiniPlayer'
 import { NowPlaying } from './sections/NowPlaying'
 import { PageViews } from './sections/PageViews'
 import { Projects } from './sections/Projects'
-// import { TechStack } from './sections/TechStack'
+import { TechStack } from './sections/TechStack'
 
 export default function App() {
   // Scroll-reveal: sections start faded/raised and animate in when they enter
@@ -49,7 +49,7 @@ export default function App() {
         <div className="layout__content">
           <main>
             <About />
-            {/* <TechStack /> */}
+            <TechStack />
             <Projects />
             {/* <Activity /> */}
             <Contact />
