@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { AppBar } from './components/AppBar'
 import { Footer } from './components/Footer'
+import { MiniPlayer } from './components/MiniPlayer'
 import { handleSpotlight } from './hooks/useSpotlight'
 import { About } from './sections/About'
 // import { Activity } from './sections/Activity'
@@ -38,7 +39,9 @@ export default function App() {
       {/* Fixed blurred background image + theme-tinted mask (see global.css). */}
       <div className="site-bg" aria-hidden="true" />
       <AppBar />
-      {/* Split layout: fixed hero panel on the right, scrolling content on the left. */}
+      {/* Symmetric fixed rails: Hero on the left, the PageViews/NowPlaying/
+          MiniPlayer widgets in their own glass card on the right, content
+          scrolling between them. Each is a separate element — no nesting. */}
       <div className="layout">
         <aside className="layout__hero" onMouseMove={handleSpotlight}>
           <Hero />
@@ -47,14 +50,17 @@ export default function App() {
           <main>
             <About />
             {/* <TechStack /> */}
-            <PageViews />
             <Projects />
             {/* <Activity /> */}
-            <NowPlaying />
             <Contact />
           </main>
           <Footer />
         </div>
+        <aside className="layout__widgets" onMouseMove={handleSpotlight}>
+          <PageViews />
+          <NowPlaying />
+          <MiniPlayer />
+        </aside>
       </div>
     </>
   )

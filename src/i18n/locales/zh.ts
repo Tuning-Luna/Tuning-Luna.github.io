@@ -20,6 +20,9 @@ export default {
     },
   },
   miniPlayer: {
+    eyebrow: '音乐',
+    title: '音乐播放器',
+    subtitle: '本站内置的试听曲目，播放的同时可以继续浏览。',
     play: '播放',
     pause: '暂停',
     loading: '加载中…',

@@ -4,6 +4,7 @@ import coverUrl from '../assets/stan-cover.jpg'
 import audioUrl from '../assets/Stan-Eminem Dido-The_Marshall_Mathers_LP.mp3'
 import { handleSpotlight } from '../hooks/useSpotlight'
 import { Icon } from './Icon'
+import { Section } from './Section'
 import './MiniPlayer.css'
 
 const TRACK = { title: 'Stan', artist: 'Eminem Dido' }
@@ -101,34 +102,41 @@ export function MiniPlayer() {
         : t('miniPlayer.play')
 
   return (
-    <div className="mini-player spotlight" onMouseMove={handleSpotlight}>
-      <audio ref={audioRef} src={audioUrl} preload="metadata" />
-      <img className="mini-player__cover" src={coverUrl} alt="" />
-      <span className="mini-player__info">
-        <span className="mini-player__title">{TRACK.title}</span>
-        <span className="mini-player__artist">{TRACK.artist}</span>
-      </span>
-      <button
-        type="button"
-        className={['mini-player__play', isError ? 'is-error' : '', isPlaying ? 'is-playing' : '']
-          .filter(Boolean)
-          .join(' ')}
-        aria-label={label}
-        title={label}
-        disabled={showLoading}
-        onClick={toggle}
-      >
-        {isError ? (
-          <Icon name="alert" size={24} />
-        ) : showLoading ? (
-          <span className="mini-player__spinner" aria-hidden="true" />
-        ) : (
-          <span className="mini-player__icons" aria-hidden="true">
-            <Icon name="play" size={24} className="mini-player__icon mini-player__icon--play" />
-            <Icon name="pause" size={24} className="mini-player__icon mini-player__icon--pause" />
-          </span>
-        )}
-      </button>
-    </div>
+    <Section
+      id="mini-player"
+      eyebrow={t('miniPlayer.eyebrow')}
+      title={t('miniPlayer.title')}
+      subtitle={t('miniPlayer.subtitle')}
+    >
+      <div className="mini-player spotlight" onMouseMove={handleSpotlight}>
+        <audio ref={audioRef} src={audioUrl} preload="metadata" />
+        <img className="mini-player__cover" src={coverUrl} alt="" />
+        <span className="mini-player__info">
+          <span className="mini-player__title">{TRACK.title}</span>
+          <span className="mini-player__artist">{TRACK.artist}</span>
+        </span>
+        <button
+          type="button"
+          className={['mini-player__play', isError ? 'is-error' : '', isPlaying ? 'is-playing' : '']
+            .filter(Boolean)
+            .join(' ')}
+          aria-label={label}
+          title={label}
+          disabled={showLoading}
+          onClick={toggle}
+        >
+          {isError ? (
+            <Icon name="alert" size={24} />
+          ) : showLoading ? (
+            <span className="mini-player__spinner" aria-hidden="true" />
+          ) : (
+            <span className="mini-player__icons" aria-hidden="true">
+              <Icon name="play" size={24} className="mini-player__icon mini-player__icon--play" />
+              <Icon name="pause" size={24} className="mini-player__icon mini-player__icon--pause" />
+            </span>
+          )}
+        </button>
+      </div>
+    </Section>
   )
 }

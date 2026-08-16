@@ -20,6 +20,9 @@ export default {
     },
   },
   miniPlayer: {
+    eyebrow: 'Music',
+    title: 'Music Player',
+    subtitle: 'A built-in demo track on this site — play it while you browse.',
     play: 'Play',
     pause: 'Pause',
     loading: 'Loading…',

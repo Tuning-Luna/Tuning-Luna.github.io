@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Button } from '../components/Button'
 import { Icon } from '../components/Icon'
-import { MiniPlayer } from '../components/MiniPlayer'
 import { Stat } from '../components/Stat'
 import { profile, profileStats } from '../data/profile'
 import './Hero.css'
@@ -37,7 +36,6 @@ export function Hero() {
           </Button>
           <Button href="#projects">{t('hero.ctaProjects')}</Button>
         </div>
-        <MiniPlayer />
       </div>
     </section>
   )
