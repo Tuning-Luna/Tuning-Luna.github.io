@@ -1,0 +1,71 @@
+/* SmartImage — wrapper (m3-img) carries the caller's sizing/shape class; the
+   media element fills it. Skeleton and fallback paint inside the reserved
+   aspect-ratio box, so loading and failure never shift the layout. */
+
+.m3-img {
+  position: relative;
+  display: block;
+  max-width: 100%;
+  /* Clips the square fallback overlay to rounded wrappers. */
+  overflow: hidden;
+}
+
+.m3-img__media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+/* Loading: a tonal pulse painted as the media's own background — visible
+   until image data arrives, since an <img> shows its background while its
+   content has not loaded. */
+.m3-img--loading .m3-img__media {
+  background-color: var(--md-sys-color-surface-container-high);
+  animation: m3-img-pulse 1.6s var(--md-sys-motion-easing-standard) infinite;
+}
+
+@keyframes m3-img-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* Loaded: one gentle fade-in on arrival (re-runs after a src change). */
+.m3-img--loaded .m3-img__media {
+  animation: m3-img-fade-in var(--md-sys-motion-duration-medium1) var(--md-sys-motion-easing-emphasized-decelerate);
+}
+
+@keyframes m3-img-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Error: keep the reserved box but hide the broken image, and let the
+   fallback overlay take its place. */
+.m3-img--error .m3-img__media {
+  visibility: hidden;
+}
+
+.m3-img__fallback {
+  position: absolute;
+  inset: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .m3-img--loading .m3-img__media,
+  .m3-img--loaded .m3-img__media {
+    animation: none;
+  }
+}
