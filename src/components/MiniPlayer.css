@@ -1,10 +1,10 @@
-/* Minimal MD3 music player: an elevated surface with the album cover on the
-   left and a filled, circular play/pause button on the right. */
+/* MD3 music player: an elevated surface stacking a main row (cover, track
+   info, transport controls), a seekable progress bar and a volume slider. */
 
 .mini-player {
   display: flex;
-  align-items: center;
-  gap: var(--md-sys-spacing-lg);
+  flex-direction: column;
+  gap: var(--md-sys-spacing-sm);
   width: 100%;
   padding: var(--md-sys-spacing-md);
   background-color: color-mix(
@@ -26,6 +26,15 @@
   transform: translateY(-2px);
 }
 
+/* --- Main row: cover + info + transport -------------------------------- */
+
+.mini-player__main {
+  display: flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-sm);
+  width: 100%;
+}
+
 .mini-player__cover {
   width: 56px;
   height: 56px;
@@ -33,7 +42,16 @@
   object-fit: cover;
 }
 
-/* Track info column between the cover and the play button. */
+/* Placeholder when a track has no cover image beside its audio file. */
+.mini-player__cover--fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+/* Track info column between the cover and the transport buttons. */
 .mini-player__info {
   display: flex;
   flex-direction: column;
@@ -61,6 +79,19 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.mini-player__transport {
+  display: flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-xs);
+}
+
+/* Skip buttons are slightly smaller than the standard 40px icon button so the
+   transport fits beside the cover + info in the 360px sidebar. */
+.mini-player__skip.m3-icon-button {
+  width: 36px;
+  height: 36px;
 }
 
 .mini-player__play {
@@ -177,6 +208,45 @@
   to {
     opacity: 1;
   }
+}
+
+/* --- Progress row: elapsed + seek slider + total ------------------------ */
+
+.mini-player__progress {
+  display: flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-sm);
+  width: 100%;
+}
+
+/* Fixed widths so the labels don't jitter as the numbers tick (tabular
+   numerals keep every glyph the same width). */
+.mini-player__time {
+  min-width: 32px;
+  font-size: var(--md-sys-typescale-label-small-size);
+  font-weight: var(--md-sys-typescale-label-small-weight);
+  line-height: var(--md-sys-typescale-label-small-line-height);
+  letter-spacing: var(--md-sys-typescale-label-small-tracking);
+  font-variant-numeric: tabular-nums;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.mini-player__time--total {
+  text-align: right;
+}
+
+/* --- Volume row: mute toggle + slider ----------------------------------- */
+
+.mini-player__volume {
+  display: flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-xs);
+  width: 100%;
+}
+
+.mini-player__mute.m3-icon-button {
+  width: 32px;
+  height: 32px;
 }
 
 @media (prefers-reduced-motion: reduce) {

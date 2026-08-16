@@ -19,6 +19,12 @@ export type IconName =
   | 'play'
   | 'pause'
   | 'alert'
+  | 'skipBack'
+  | 'skipForward'
+  | 'volumeHigh'
+  | 'volumeLow'
+  | 'volumeMute'
+  | 'music'
 
 interface IconProps extends Omit<SVGProps<SVGSVGElement>, 'name'> {
   name: IconName
@@ -56,6 +62,13 @@ const STROKE: Partial<Record<IconName, string>> = {
   fork: 'M12 12v9M12 12a3 3 0 0 0-3-3M12 12a3 3 0 0 1 3-3M6 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM18 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM12 9v3',
   code: 'm8 6-5 6 5 6M16 6l5 6-5 6',
   chevronUp: 'm18 15-6-6-6 6',
+  skipBack: 'M19 20 9 12l10-8v16ZM5 19V5',
+  skipForward: 'm5 4 10 8-10 8V4ZM19 5v14',
+  volumeHigh:
+    'M11 5 6 9H2v6h4l5 4V5ZM15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14',
+  volumeLow: 'M11 5 6 9H2v6h4l5 4V5ZM15.54 8.46a5 5 0 0 1 0 7.07',
+  volumeMute: 'M11 5 6 9H2v6h4l5 4V5ZM22 9l-6 6M16 9l6 6',
+  music: 'M9 18V5l12-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm12-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z',
 }
 
 export function Icon({ name, size = 20, ...rest }: IconProps) {
