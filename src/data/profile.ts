@@ -33,3 +33,6 @@ export const profileStats = {
 } as const
 
 export const siteUrl = 'https://tuning-luna.github.io'
+
+/** This site's own repository, linked from the app bar. */
+export const siteRepoUrl = 'https://github.com/Tuning-Luna/Tuning-Luna.github.io'

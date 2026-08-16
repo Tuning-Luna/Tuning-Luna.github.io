@@ -129,5 +129,6 @@ export default {
     language: '切换到英文',
     backToTop: '返回顶部',
     openExternal: '在新标签页打开',
+    repo: '在 GitHub 查看本站源码',
   },
 }

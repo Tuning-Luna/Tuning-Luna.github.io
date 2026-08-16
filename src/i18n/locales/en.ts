@@ -142,5 +142,6 @@ export default {
     language: 'Switch language to Chinese',
     backToTop: 'Back to top',
     openExternal: 'Opens in a new tab',
+    repo: 'View this site on GitHub',
   },
 }

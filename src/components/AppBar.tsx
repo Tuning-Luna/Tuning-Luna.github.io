@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import { profile } from '../data/profile'
+import { profile, siteRepoUrl } from '../data/profile'
+import { Icon } from './Icon'
 import { LanguageToggle } from './LanguageToggle'
 import { ThemeToggle } from './ThemeToggle'
 import './AppBar.css'
@@ -40,6 +41,9 @@ export function AppBar() {
         <div className="appbar__actions">
           <LanguageToggle />
           <ThemeToggle />
+          <a className="m3-icon-button" href={siteRepoUrl} target="_blank" rel="noreferrer noopener" aria-label={t('a11y.repo')}>
+            <Icon name="github" size={20} />
+          </a>
         </div>
       </div>
     </header>
