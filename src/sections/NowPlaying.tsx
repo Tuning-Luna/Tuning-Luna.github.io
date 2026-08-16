@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next'
+import { Icon } from '../components/Icon'
 import { Section } from '../components/Section'
+import { SmartImage } from '../components/SmartImage'
 import { profile } from '../data/profile'
 import './NowPlaying.css'
 
@@ -31,13 +33,14 @@ export function NowPlaying() {
         rel="noreferrer noopener"
         aria-label={t('nowPlaying.alt')}
       >
-        <img
+        <SmartImage
           src={SPOTIFY_CARD_URL}
           alt=""
           width={320}
           height={100}
           loading="lazy"
           referrerPolicy="no-referrer"
+          fallback={<Icon name="music" size={24} />}
         />
       </a>
     </Section>

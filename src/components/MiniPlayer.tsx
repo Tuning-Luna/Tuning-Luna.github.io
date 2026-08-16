@@ -13,6 +13,7 @@ import { Icon } from './Icon'
 import { IconButton } from './IconButton'
 import { Section } from './Section'
 import { Slider } from './Slider'
+import { SmartImage } from './SmartImage'
 import './MiniPlayer.css'
 
 /** Only show the loading spinner once buffering has persisted this long. */
@@ -386,13 +387,14 @@ export function MiniPlayer() {
       <div className="mini-player spotlight" onMouseMove={handleSpotlight}>
         <audio ref={audioRef} src={track.url} preload="metadata" />
         <div className="mini-player__main">
-          {track.coverUrl ? (
-            <img className="mini-player__cover" src={track.coverUrl} alt="" />
-          ) : (
-            <span className="mini-player__cover mini-player__cover--fallback">
-              <Icon name="music" size={24} />
-            </span>
-          )}
+          <SmartImage
+            className="mini-player__cover"
+            src={track.coverUrl}
+            alt=""
+            width={56}
+            height={56}
+            fallback={<Icon name="music" size={24} />}
+          />
           <span className="mini-player__info">
             <span className="mini-player__title">{track.title}</span>
             <span className="mini-player__artist">{track.artist}</span>

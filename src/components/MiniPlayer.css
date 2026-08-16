@@ -35,20 +35,11 @@
   width: 100%;
 }
 
+/* Cover box: fixed-size wrapper around SmartImage's media element. */
 .mini-player__cover {
   width: 56px;
   height: 56px;
   border-radius: var(--md-sys-shape-corner-small);
-  object-fit: cover;
-}
-
-/* Placeholder when a track has no cover image beside its audio file. */
-.mini-player__cover--fallback {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--md-sys-color-secondary-container);
-  color: var(--md-sys-color-on-secondary-container);
 }
 
 /* Track info column between the cover and the transport buttons. */

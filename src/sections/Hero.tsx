@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Button } from '../components/Button'
 import { Icon } from '../components/Icon'
+import { SmartImage } from '../components/SmartImage'
 import { Stat } from '../components/Stat'
 import { profile, profileStats } from '../data/profile'
 import './Hero.css'
@@ -10,13 +11,14 @@ export function Hero() {
   return (
     <section id="top" className="hero">
       <div className="container hero__inner">
-        <img
+        <SmartImage
           className="hero__avatar"
           src={profile.avatarUrl}
           alt={profile.name}
           width={120}
           height={120}
           referrerPolicy="no-referrer"
+          fallback={<Icon name="github" size={48} />}
         />
         <h1 className="hero__name">{profile.name}</h1>
         <p className="hero__bio">{t('hero.bio')}</p>
