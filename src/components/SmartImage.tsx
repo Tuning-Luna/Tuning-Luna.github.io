@@ -42,13 +42,13 @@ export function SmartImage({ src, alt = '', fallback, className, ...rest }: Smar
         src={src}
         alt={alt}
         decoding="async"
+        {...rest}
         onLoad={() => {
           if (src) setLoadedSrc(src)
         }}
         onError={() => {
           if (src) setFailedSrc(src)
         }}
-        {...rest}
       />
       {status === 'error' && (
         <span

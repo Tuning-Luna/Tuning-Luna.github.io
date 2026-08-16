@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { profile, siteRepoUrl } from '../data/profile'
 import { Icon } from './Icon'
 import { LanguageToggle } from './LanguageToggle'
+import { SmartImage } from './SmartImage'
 import { ThemeToggle } from './ThemeToggle'
 import './AppBar.css'
 
@@ -21,13 +22,14 @@ export function AppBar() {
     <header className="appbar">
       <div className="container appbar__inner">
         <a className="appbar__brand" href="#top">
-          <img
+          <SmartImage
             className="appbar__avatar"
             src={profile.avatarUrl}
             alt=""
             width={32}
             height={32}
             referrerPolicy="no-referrer"
+            fallback={<Icon name="github" size={16} />}
           />
           <span className="appbar__name">{profile.name}</span>
         </a>
