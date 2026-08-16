@@ -34,25 +34,24 @@ const FADE_OUT_MS = 200 // leaving a track
 const FADE_IN_MS = 300 // entering a track
 /** Wheel notches step the volume by this much (%). */
 const VOLUME_WHEEL_STEP = 5
-// Jumps smaller than these apply instantly (drags, keyboard nudges); larger
-// click-jumps glide from the previous position instead of teleporting.
+// Volume jumps smaller than this apply instantly (drags, keyboard nudges);
+// larger click-jumps glide from the previous position instead of teleporting.
 const VOLUME_GLIDE_THRESHOLD = 8
-const SEEK_GLIDE_THRESHOLD_RATIO = 0.05
 
 /**
- * MD3 music player: album cover + track info + transport controls, a seekable
- * progress bar and a volume slider. The playlist comes from `src/data/tracks`
- * (every file in `src/assets/music/`), with playback URLs already resolved to
- * their final hashed asset paths at build time.
+ * MD3 music player: album cover + track info + transport controls (previous /
+ * play-pause / next) and a volume slider. The playlist comes from
+ * `src/data/tracks` (every file in `src/assets/music/`), with playback URLs
+ * already resolved to their final hashed asset paths at build time.
  *
  * `preload="metadata"` fetches just the audio header on page load (a few KB),
  * so a broken or unreachable file surfaces as an error state early. The full
  * file is still only downloaded when the visitor presses play.
  *
  * States: idle → loading (buffering) → ready/playing, or error (retryable).
- * Switching tracks fades the audio out/in; click-jumps on the sliders glide
- * from the previous position; muting glides the volume handle to zero. All
- * animation collapses to instant changes under `prefers-reduced-motion`
+ * Switching tracks fades the audio out/in; click-jumps on the volume slider
+ * glide from the previous position; muting glides the volume handle to zero.
+ * All animation collapses to instant changes under `prefers-reduced-motion`
  * (audio fades are kept — they prevent clicks, not motion).
  */
 type Status = 'idle' | 'loading' | 'ready' | 'playing' | 'error'
@@ -70,24 +69,12 @@ const loadVolume = (): number => {
   return DEFAULT_VOLUME
 }
 
-const formatTime = (seconds: number): string => {
-  if (!Number.isFinite(seconds) || seconds <= 0) return '0:00'
-  const m = Math.floor(seconds / 60)
-  const s = Math.floor(seconds % 60)
-  return `${m}:${String(s).padStart(2, '0')}`
-}
-
 export function MiniPlayer() {
   const { t } = useTranslation()
   const audioRef = useRef<HTMLAudioElement>(null)
   const [index, setIndex] = useState(0)
   const [status, setStatus] = useState<Status>('idle')
   const [showLoading, setShowLoading] = useState(false)
-  const [time, setTime] = useState(0)
-  const [duration, setDuration] = useState(0)
-  /** Non-null while the visitor is dragging the seek thumb: the drag position
-   *  wins over `timeupdate` events until the pointer/key is released. */
-  const [seeking, setSeeking] = useState<number | null>(null)
   const [volume, setVolume] = useState<number>(loadVolume)
   const [muted, setMuted] = useState(false)
   /** Volume-handle position while it glides to/from zero on (un)mute; the
@@ -102,7 +89,6 @@ export function MiniPlayer() {
   const gainRef = useRef(1)
   const fadeTweenRef = useRef<TweenHandle | null>(null)
   const fadeSettleRef = useRef<(() => void) | null>(null)
-  const seekGlideRef = useRef<TweenHandle | null>(null)
   const volumeGlideRef = useRef<TweenHandle | null>(null)
   const muteGlideRef = useRef<TweenHandle | null>(null)
   /** Bumped on every switch attempt; a number change mid-fade aborts the
@@ -178,14 +164,8 @@ export function MiniPlayer() {
     const onPlaying = () => setStatus('playing')
     const onCanPlay = () => setStatus(audio.paused ? 'ready' : 'playing')
     const onError = () => setStatus('error')
-    const onTimeUpdate = () => setTime(audio.currentTime)
-    const onDurationChange = () => setDuration(Number.isFinite(audio.duration) ? audio.duration : 0)
     // A finished track advances the playlist and keeps playing (fading in).
     const onEnded = () => {
-      seekGlideRef.current?.cancel()
-      seekGlideRef.current = null
-      setTime(0)
-      setSeeking(null)
       if (TRACKS.length === 1) {
         audio.currentTime = 0
         gainRef.current = 0
@@ -205,8 +185,6 @@ export function MiniPlayer() {
     audio.addEventListener('waiting', onWaiting)
     audio.addEventListener('canplay', onCanPlay)
     audio.addEventListener('error', onError)
-    audio.addEventListener('timeupdate', onTimeUpdate)
-    audio.addEventListener('durationchange', onDurationChange)
     return () => {
       audio.removeEventListener('play', onPlay)
       audio.removeEventListener('playing', onPlaying)
@@ -215,8 +193,6 @@ export function MiniPlayer() {
       audio.removeEventListener('waiting', onWaiting)
       audio.removeEventListener('canplay', onCanPlay)
       audio.removeEventListener('error', onError)
-      audio.removeEventListener('timeupdate', onTimeUpdate)
-      audio.removeEventListener('durationchange', onDurationChange)
     }
   }, [applyAudioVolume, fadeGain])
 
@@ -295,13 +271,9 @@ export function MiniPlayer() {
       await fadeGain(0, FADE_OUT_MS)
       if (switchSeqRef.current !== seq) return
     }
-    seekGlideRef.current?.cancel()
-    seekGlideRef.current = null
     if (target === index) {
       // Wrapping around a one-track playlist: restart instead of switching
       // (setIndex would bail out on the unchanged value).
-      setTime(0)
-      setSeeking(null)
       audio.currentTime = 0
       if (resume) {
         gainRef.current = 0
@@ -311,12 +283,9 @@ export function MiniPlayer() {
       }
       return
     }
-    // Drop the outgoing track's stale progress/status; the new one starts
-    // fresh once its metadata arrives.
+    // Drop the outgoing track's stale status; the new one starts fresh once
+    // its metadata arrives.
     resumeRef.current = resume
-    setTime(0)
-    setDuration(0)
-    setSeeking(null)
     setStatus('idle')
     setIndex(target)
   }
@@ -328,10 +297,7 @@ export function MiniPlayer() {
     if (audio && audio.currentTime > PREV_RESTART_S) {
       switchSeqRef.current++
       resetGain()
-      seekGlideRef.current?.cancel()
-      seekGlideRef.current = null
       audio.currentTime = 0
-      setTime(0)
       return
     }
     void goTo((index - 1 + TRACKS.length) % TRACKS.length, audio ? !audio.paused : false)
@@ -340,37 +306,6 @@ export function MiniPlayer() {
   const next = () => {
     const audio = audioRef.current
     void goTo((index + 1) % TRACKS.length, audio ? !audio.paused : false)
-  }
-
-  const seekTo = (target: number) => {
-    seekGlideRef.current?.cancel()
-    seekGlideRef.current = null
-    const from = seeking ?? time
-    const glide =
-      duration > 0 &&
-      Math.abs(target - from) > duration * SEEK_GLIDE_THRESHOLD_RATIO &&
-      !prefersReducedMotion()
-    if (glide) {
-      // The handle glides from its previous position; the real seek happens
-      // once it lands, so the visible motion and the audio never disagree.
-      setSeeking(from)
-      seekGlideRef.current = tween(from, target, GLIDE_MS, easingEmphasizedDecelerate, (v) => setSeeking(v), () => {
-        seekGlideRef.current = null
-        setSeeking(null)
-        const audio = audioRef.current
-        if (audio && duration > 0) audio.currentTime = target
-      })
-    } else {
-      setSeeking(target)
-      const audio = audioRef.current
-      if (audio && duration > 0) audio.currentTime = target
-    }
-  }
-
-  /** Pointer/key release only ends a direct drag; an in-flight glide keeps
-   *  running and clears itself when it lands. */
-  const commitSeek = () => {
-    if (!seekGlideRef.current) setSeeking(null)
   }
 
   const onVolumeInput = (target: number) => {
@@ -438,8 +373,6 @@ export function MiniPlayer() {
       : isPlaying
         ? t('miniPlayer.pause')
         : t('miniPlayer.play')
-  const seekMax = duration || 1
-  const seekValue = Math.min(seeking ?? time, seekMax)
   const displayVolume = muteGlide ?? (muted ? 0 : volume)
   const volumeIcon = displayVolume === 0 ? 'volumeMute' : displayVolume < 50 ? 'volumeLow' : 'volumeHigh'
 
@@ -503,20 +436,6 @@ export function MiniPlayer() {
               onClick={next}
             />
           </span>
-        </div>
-        <div className="mini-player__progress">
-          <span className="mini-player__time">{formatTime(seekValue)}</span>
-          <Slider
-            label={t('miniPlayer.seek')}
-            value={seekValue}
-            max={seekMax}
-            step={0.1}
-            disabled={!duration}
-            valueText={formatTime(seekValue)}
-            onChange={seekTo}
-            onCommit={commitSeek}
-          />
-          <span className="mini-player__time mini-player__time--total">{formatTime(duration)}</span>
         </div>
         <div className="mini-player__volume">
           <IconButton

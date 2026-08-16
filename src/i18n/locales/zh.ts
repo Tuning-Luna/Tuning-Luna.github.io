@@ -30,7 +30,6 @@ export default {
     pause: '暂停',
     prev: '上一首',
     next: '下一首',
-    seek: '播放进度',
     volume: '音量',
     mute: '静音',
     unmute: '取消静音',

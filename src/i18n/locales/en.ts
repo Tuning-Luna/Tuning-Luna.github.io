@@ -30,7 +30,6 @@ export default {
     pause: 'Pause',
     prev: 'Previous track',
     next: 'Next track',
-    seek: 'Seek',
     volume: 'Volume',
     mute: 'Mute',
     unmute: 'Unmute',

@@ -1,5 +1,5 @@
 /* MD3 music player: an elevated surface stacking a main row (cover, track
-   info, transport controls), a seekable progress bar and a volume slider. */
+   info, transport controls) and a volume slider row. */
 
 .mini-player {
   display: flex;
@@ -208,31 +208,6 @@
   to {
     opacity: 1;
   }
-}
-
-/* --- Progress row: elapsed + seek slider + total ------------------------ */
-
-.mini-player__progress {
-  display: flex;
-  align-items: center;
-  gap: var(--md-sys-spacing-sm);
-  width: 100%;
-}
-
-/* Fixed widths so the labels don't jitter as the numbers tick (tabular
-   numerals keep every glyph the same width). */
-.mini-player__time {
-  min-width: 32px;
-  font-size: var(--md-sys-typescale-label-small-size);
-  font-weight: var(--md-sys-typescale-label-small-weight);
-  line-height: var(--md-sys-typescale-label-small-line-height);
-  letter-spacing: var(--md-sys-typescale-label-small-tracking);
-  font-variant-numeric: tabular-nums;
-  color: var(--md-sys-color-on-surface-variant);
-}
-
-.mini-player__time--total {
-  text-align: right;
 }
 
 /* --- Volume row: mute toggle + slider ----------------------------------- */
