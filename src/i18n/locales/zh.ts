@@ -95,7 +95,7 @@ export default {
   contact: {
     eyebrow: '联系',
     title: '找到我',
-    subtitle: '开源项目，以及我听的歌。',
+    subtitle: '在互联网上找到我。',
     github: { label: 'GitHub', desc: '开源与代码' },
     gmail: { label: 'Gmail', desc: '给我发邮件' },
     discord: { label: 'Discord', desc: '和我聊天' },
