@@ -114,7 +114,8 @@ export default {
       totalCommits: 'Commits',
     },
     yearsLabel: 'Active since',
-    note: 'Snapshot retrieved 2026-08-14.',
+    heatmapTitle: 'contributions in the last 12 months',
+    note: 'Snapshot retrieved 2026-08-17.',
   },
   contact: {
     eyebrow: 'Contact',

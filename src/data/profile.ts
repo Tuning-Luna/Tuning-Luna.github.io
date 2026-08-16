@@ -2,7 +2,7 @@
  * Public profile facts, all verifiable from
  * https://github.com/Tuning-Luna and the profile README.
  *
- * The numbers below are a snapshot retrieved on 2026-08-14 from the GitHub API.
+ * The numbers below are a snapshot retrieved on 2026-08-17 from the GitHub API.
  * They are intentionally static (a personal homepage has no runtime backend);
  * refresh them manually when they drift.
  */
@@ -27,7 +27,7 @@ export const profileStats = {
   publicRepos: 24,
   followers: 15,
   /** Total commit contributions (GitHub profile contribution graph), 2023–2026. */
-  totalCommits: 401,
+  totalCommits: 1103,
   /** Years with contributions, ascending. */
   contributionYears: ['2023', '2024', '2025', '2026'] as const,
 } as const

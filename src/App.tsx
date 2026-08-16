@@ -3,7 +3,7 @@ import { AppBar } from './components/AppBar'
 import { Footer } from './components/Footer'
 import { handleSpotlight } from './hooks/useSpotlight'
 import { About } from './sections/About'
-// import { Activity } from './sections/Activity'
+import { Activity } from './sections/Activity'
 import { Contact } from './sections/Contact'
 import { Hero } from './sections/Hero'
 import { MiniPlayer } from './sections/MiniPlayer'
@@ -51,7 +51,7 @@ export default function App() {
             <About />
             <TechStack />
             <Projects />
-            {/* <Activity /> */}
+            <Activity />
             <Contact />
           </main>
           <Footer />

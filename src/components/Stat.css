@@ -8,6 +8,10 @@
   text-align: center;
 }
 
+.m3-stat__icon {
+  color: var(--md-sys-color-primary);
+}
+
 .m3-stat__value {
   font-family: var(--md-ref-typeface-mono);
   font-size: var(--md-sys-typescale-headline-small-size);

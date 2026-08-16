@@ -101,7 +101,8 @@ export default {
       totalCommits: '提交贡献',
     },
     yearsLabel: '活跃年份',
-    note: '数据获取时间：2026-08-14。',
+    heatmapTitle: '次贡献 · 近 12 个月',
+    note: '数据获取时间：2026-08-17。',
   },
   contact: {
     eyebrow: '联系',

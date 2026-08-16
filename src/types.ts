@@ -17,3 +17,11 @@ export interface TechGroup {
   id: string
   items: string[]
 }
+
+export interface ContributionDay {
+  /** ISO date, e.g. 2026-08-17 */
+  date: string
+  count: number
+  /** Quartile of the nonzero counts: 0 none … 4 six-plus */
+  level: 0 | 1 | 2 | 3 | 4
+}

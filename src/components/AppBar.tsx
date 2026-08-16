@@ -12,9 +12,9 @@ const NAV_ITEMS = [
   // { id: 'page-views', key: 'nav.pageViews' },
   { id: 'stack', key: 'nav.stack' },
   { id: 'projects', key: 'nav.projects' },
+  { id: 'activity', key: 'nav.activity' },
   // { id: 'now-playing', key: 'nav.nowPlaying' },
   { id: 'contact', key: 'nav.contact' },
-  // { id: 'activity', key: 'nav.activity' },
 ] as const
 
 // Stable module-level array — useActiveSection re-subscribes when it changes.
