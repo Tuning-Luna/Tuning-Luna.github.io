@@ -76,6 +76,23 @@
   text-decoration: none;
 }
 
+/* Active state follows the M3 navigation pattern: a full-shape indicator in
+   the secondary container role with its on-color label. */
+.appbar__link--active {
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+/* Hovering the active link keeps the indicator and adds M3's 8% state layer. */
+.appbar__link--active:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--md-sys-color-on-secondary-container) 8%,
+    var(--md-sys-color-secondary-container)
+  );
+  color: var(--md-sys-color-on-secondary-container);
+}
+
 .appbar__actions {
   display: flex;
   align-items: center;
