@@ -12,7 +12,10 @@ export default {
     bio: "You read my bio. That's enough social interaction for one day.",
     ctaProjects: 'View Projects',
     ctaGithub: 'GitHub',
+    ctaGmail: 'Gmail',
+    ctaDiscord: 'Discord',
     ctaTelegram: 'Telegram',
+    ctaSpotify: 'Spotify',
     stats: {
       repos: 'Public repos',
       stars: 'Total stars',

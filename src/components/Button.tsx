@@ -20,13 +20,14 @@ type ButtonProps = BaseProps &
 
 /**
  * M3 button. Renders an <a> when `href` is given, otherwise a <button>.
- * External links open in a new tab with a small external indicator.
+ * External links (http(s) and mailto:) open in a new tab with a small external
+ * indicator.
  */
 export function Button({ variant = 'filled', href, children, className, ...rest }: ButtonProps) {
   const classes = ['m3-button', `m3-button--${variant}`, className].filter(Boolean).join(' ')
 
   if (href) {
-    const external = href.startsWith('http')
+    const external = href.startsWith('http') || href.startsWith('mailto:')
     return (
       <a
         className={classes}

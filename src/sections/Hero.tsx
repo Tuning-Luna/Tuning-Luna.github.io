@@ -14,8 +14,8 @@ export function Hero() {
           className="hero__avatar"
           src={profile.avatarUrl}
           alt={profile.name}
-          width={128}
-          height={128}
+          width={120}
+          height={120}
           referrerPolicy="no-referrer"
         />
         <h1 className="hero__name">{profile.name}</h1>
@@ -30,9 +30,21 @@ export function Hero() {
             <Icon name="github" size={16} />
             {t('hero.ctaGithub')}
           </Button>
+          <Button href={profile.gmailUrl} variant="tonal">
+            <Icon name="gmail" size={16} />
+            {t('hero.ctaGmail')}
+          </Button>
+          <Button href={profile.discordUrl} variant="tonal">
+            <Icon name="discord" size={16} />
+            {t('hero.ctaDiscord')}
+          </Button>
           <Button href={profile.telegramUrl} variant="tonal">
             <Icon name="telegram" size={16} />
             {t('hero.ctaTelegram')}
+          </Button>
+          <Button href={profile.spotifyUrl} variant="tonal">
+            <Icon name="spotify" size={16} />
+            {t('hero.ctaSpotify')}
           </Button>
           <Button href="#projects">{t('hero.ctaProjects')}</Button>
         </div>
