@@ -1,8 +1,18 @@
 import { useTranslation } from 'react-i18next'
 import { Chip } from '../components/Chip'
+import { Icon } from '../components/Icon'
+import type { IconName } from '../components/Icon'
 import { Section } from '../components/Section'
 import { techGroups } from '../data/tech'
 import './TechStack.css'
+
+const GROUP_ICONS: Record<string, IconName> = {
+  languages: 'code',
+  frontend: 'widgets',
+  backend: 'dns',
+  databases: 'storage',
+  tools: 'build',
+}
 
 export function TechStack() {
   const { t } = useTranslation()
@@ -17,7 +27,10 @@ export function TechStack() {
       <div className="stack">
         {techGroups.map((group) => (
           <div className="stack__group" key={group.id}>
-            <h3 className="stack__group-title">{t(`stack.groups.${group.id}`)}</h3>
+            <h3 className="stack__group-title">
+              <Icon name={GROUP_ICONS[group.id] ?? 'code'} size={18} className="stack__group-icon" />
+              <span>{t(`stack.groups.${group.id}`)}</span>
+            </h3>
             <div className="stack__chips">
               {group.items.map((item) => (
                 <Chip key={item} withCode={group.id === 'languages'}>
