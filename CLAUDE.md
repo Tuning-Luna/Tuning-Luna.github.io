@@ -38,6 +38,7 @@ Two kinds, kept apart on purpose: **generated** (`src/data/stats.ts` account sta
 - `src/theme/layout.css` — the split layout and its sticky rails.
 - `src/theme/utilities.css` — `.container`, `.visually-hidden`, `.spotlight`, and the shared `.glass-card` frosted-surface recipe.
 - Components read everything from these CSS variables — no hard-coded colors or dimensions in component styles.
+- `design-system/` (gitignored, local-only) is a portable snapshot of this design system — theme CSS, the M3 primitives, shared hooks and docs. **Any change to `src/theme/`, the M3 primitives in `src/components/`, or a hook mirrored in `design-system/hooks/` must be synced to its `design-system/` counterpart (plus the relevant `AGENT-GUIDE.md` / `docs/` sections) in the same task**; append a dated line to the sync log in `design-system/AGENT-GUIDE.md` §17.
 
 ### Theme & language persistence
 `src/hooks/useTheme.ts` cycles system → light → dark (default **dark**), persists to localStorage key `tuning-luna-theme`, and reflects the active mode via `data-theme` on `<html>` plus the `<meta name="theme-color">`. `src/i18n/index.ts` persists the choice to `tuning-luna-lang`. The inline `<script>` in `index.html` applies both saved prefs **before first paint** to avoid a light/Chinese flash — if you rename those localStorage keys, update the inline script too.
