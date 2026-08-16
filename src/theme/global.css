@@ -126,6 +126,53 @@ a:hover {
   }
 }
 
+/* --- Scrollbar (Material scrollbar) ---
+   MD3 has no web scrollbar spec, so the geometry and colors come from Flutter's
+   Material Scrollbar (see the --md-scrollbar-* tokens in tokens.css): a 4px
+   thumb (Flutter's mobile/Android thickness) with rounded corners over a
+   transparent track.
+
+   The two styling mechanisms are deliberately scoped apart. MDN documents that
+   when `scrollbar-color`/`scrollbar-width` are supported and not `auto`, they
+   *override* any ::-webkit-scrollbar-* styling — so setting both globally would
+   silently drop the width/radius in Chrome 121+ and Safari 26.2+. Hence:
+   standard properties only where WebKit pseudo-elements don't exist (Firefox),
+   and the pseudo-elements everywhere else. `scrollbar-width: thin` is a
+   platform-defined "thin" variant, so Firefox can't be made pixel-exact. */
+
+@supports (scrollbar-color: auto) and (not (selector(::-webkit-scrollbar))) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--md-scrollbar-thumb) transparent;
+  }
+}
+
+@supports selector(::-webkit-scrollbar) {
+  *::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: var(--md-scrollbar-thumb);
+    /* Radius.circular(8) — Flutter's web thumb radius, i.e. M3 corner-small. */
+    border-radius: var(--md-sys-shape-corner-small);
+  }
+
+  /* Chromium-only pseudo-class variants of the thumb's hover/dragged states. */
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--md-scrollbar-thumb-hover);
+  }
+
+  *::-webkit-scrollbar-thumb:active {
+    background: var(--md-scrollbar-thumb-active);
+  }
+}
+
 /* Content layer above the fixed background (.site-bg, z-index 0). */
 .layout {
   position: relative;

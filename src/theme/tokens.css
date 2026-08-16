@@ -1,8 +1,9 @@
 /* Material Design 3 design tokens for this site.
    Color tokens live in ./colors.css (generated from a seed by scripts/gen-theme.mjs).
-   The tokens below are the static M3 spec values: type scale, shape, elevation,
-   spacing and motion. They are defined as CSS custom properties so every component
-   consumes them — no hard-coded dimensions or colors in component styles. */
+   The tokens below are the static M3 spec values (type scale, shape, elevation,
+   spacing, motion) plus site-level derived tokens (glassmorphism, scrollbar).
+   They are defined as CSS custom properties so every component consumes them —
+   no hard-coded dimensions or colors in component styles. */
 
 @import './colors.css';
 
@@ -141,14 +142,33 @@
   --md-glass-border: color-mix(in srgb, var(--md-sys-color-outline-variant) 32%, transparent);
   /* Bright top edge that makes a translucent surface read as "glass". */
   --md-glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  /* --- Scrollbar (derived from the Material Scrollbar) ---
+     MD3 publishes no web scrollbar component or CSS spec. These values follow
+     Flutter's Material Scrollbar, Google's official Material implementation
+     (flutter/flutter, packages/flutter/lib/src/material/scrollbar.dart): the
+     thumb is ColorScheme.onSurface at a theme-aware opacity that rises on hover
+     and drag, over a transparent track.
+       light: idle .1 · hover .5 · dragged .6
+       dark:  idle .3 · hover .65 · dragged .75   */
+  --md-scrollbar-thumb: color-mix(in srgb, var(--md-sys-color-on-surface) 10%, transparent);
+  --md-scrollbar-thumb-hover: color-mix(in srgb, var(--md-sys-color-on-surface) 50%, transparent);
+  /* "active" here is the CSS :active state, i.e. Flutter's "dragged" color. */
+  --md-scrollbar-thumb-active: color-mix(in srgb, var(--md-sys-color-on-surface) 60%, transparent);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
     --md-glass-opacity: var(--md-glass-opacity-dark);
+    --md-scrollbar-thumb: color-mix(in srgb, var(--md-sys-color-on-surface) 30%, transparent);
+    --md-scrollbar-thumb-hover: color-mix(in srgb, var(--md-sys-color-on-surface) 65%, transparent);
+    --md-scrollbar-thumb-active: color-mix(in srgb, var(--md-sys-color-on-surface) 75%, transparent);
   }
 }
 
 :root[data-theme='dark'] {
   --md-glass-opacity: var(--md-glass-opacity-dark);
+  --md-scrollbar-thumb: color-mix(in srgb, var(--md-sys-color-on-surface) 30%, transparent);
+  --md-scrollbar-thumb-hover: color-mix(in srgb, var(--md-sys-color-on-surface) 65%, transparent);
+  --md-scrollbar-thumb-active: color-mix(in srgb, var(--md-sys-color-on-surface) 75%, transparent);
 }
