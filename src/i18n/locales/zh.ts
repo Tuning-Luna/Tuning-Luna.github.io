@@ -102,7 +102,7 @@ export default {
     },
     yearsLabel: '活跃年份',
     heatmapTitle: '次贡献 · 近 12 个月',
-    note: '数据获取时间：2026-08-17。',
+    note: '数据获取时间：{{date}}。',
   },
   contact: {
     eyebrow: '联系',

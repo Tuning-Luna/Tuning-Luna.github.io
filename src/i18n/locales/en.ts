@@ -115,7 +115,7 @@ export default {
     },
     yearsLabel: 'Active since',
     heatmapTitle: 'contributions in the last 12 months',
-    note: 'Snapshot retrieved 2026-08-17.',
+    note: 'Snapshot retrieved {{date}}.',
   },
   contact: {
     eyebrow: 'Contact',

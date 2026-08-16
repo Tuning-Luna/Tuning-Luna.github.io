@@ -1,4 +1,7 @@
-/* Entry stylesheet. Design tokens (colors + type/shape/elevation/spacing/motion)
-   live in ./theme/tokens.css; global base styles in ./theme/global.css. */
+/* Entry stylesheet. Design tokens live in ./theme/tokens.css; global styles
+   are layered: base (reset/backdrop/scrollbar) → layout (split layout rails)
+   → utilities (container, glass surface, spotlight). */
 @import './theme/tokens.css';
-@import './theme/global.css';
+@import './theme/base.css';
+@import './theme/layout.css';
+@import './theme/utilities.css';

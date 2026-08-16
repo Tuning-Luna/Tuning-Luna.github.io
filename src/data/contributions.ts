@@ -1,10 +1,11 @@
 /**
- * GitHub contribution calendar snapshot (last 12 months), retrieved
- * 2026-08-17 via the GraphQL contributionsCollection API.
+ * GitHub contribution calendar snapshot (last 12 months, 2025-08-17 → 2026-08-17),
+ * retrieved 2026-08-17 via the GraphQL contributionsCollection API
+ * (npm run stats:fetch regenerates it).
  *
  * Weeks are column-major like GitHub's graph: weeks[i] is a Sun-Sat column.
- * Levels are quartiles of the nonzero counts: 0 none, 1 one, 2 two-three,
- * 3 four-five, 4 six-plus.
+ * Each day is { date, count, level }; levels are quartiles of the nonzero
+ * counts: 0 none, 1 one, 2 two-three, 3 four-five, 4 six-plus.
  */
 import type { ContributionDay } from '../types'
 

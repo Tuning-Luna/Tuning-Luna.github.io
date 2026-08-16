@@ -3,7 +3,8 @@ import { Button } from '../components/Button'
 import { Icon } from '../components/Icon'
 import { SmartImage } from '../components/SmartImage'
 import { Stat } from '../components/Stat'
-import { profile, profileStats } from '../data/profile'
+import { profile } from '../data/profile'
+import { profileStats } from '../data/stats'
 import './Hero.css'
 
 export function Hero() {

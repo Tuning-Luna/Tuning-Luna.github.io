@@ -1,10 +1,9 @@
 /**
- * Public profile facts, all verifiable from
+ * Hand-maintained profile facts (URLs, bio), all verifiable from
  * https://github.com/Tuning-Luna and the profile README.
  *
- * The numbers below are a snapshot retrieved on 2026-08-17 from the GitHub API.
- * They are intentionally static (a personal homepage has no runtime backend);
- * refresh them manually when they drift.
+ * API-derived numbers (stars, repos, followers, commits) do NOT live here —
+ * they are generated into src/data/stats.ts by `npm run stats:fetch`.
  */
 export const profile = {
   name: 'Tuning-Luna',
@@ -19,17 +18,6 @@ export const profile = {
   avatarUrl: 'https://github.com/Tuning-Luna.png?size=256',
   /** GitHub profile bio. */
   bio: "You Read My Bio. That's Enough Social Interaction For One Day.",
-} as const
-
-export const profileStats = {
-  /** Sum of stars across non-fork public repositories. */
-  totalStars: 110,
-  publicRepos: 24,
-  followers: 15,
-  /** Total commit contributions (GitHub profile contribution graph), 2023–2026. */
-  totalCommits: 1103,
-  /** Years with contributions, ascending. */
-  contributionYears: ['2023', '2024', '2025', '2026'] as const,
 } as const
 
 export const siteUrl = 'https://tuning-luna.github.io'

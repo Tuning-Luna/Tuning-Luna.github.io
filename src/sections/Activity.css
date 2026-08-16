@@ -1,84 +1,18 @@
-.activity__stats,
-.activity__heatmap {
-  display: grid;
-  gap: var(--md-sys-spacing-2xl);
-  padding: var(--md-sys-spacing-2xl);
-  background-color: color-mix(
-    in srgb,
-    var(--md-sys-color-surface-container-low) calc(var(--md-glass-opacity) * 100%),
-    transparent
-  );
-  -webkit-backdrop-filter: blur(var(--md-glass-blur)) saturate(var(--md-glass-saturate));
-  backdrop-filter: blur(var(--md-glass-blur)) saturate(var(--md-glass-saturate));
-  border: 1px solid var(--md-glass-border);
-  border-radius: var(--md-sys-shape-corner-large);
-}
+/* Activity stats card and year chips. The frosted surface comes from the
+   shared .glass-card utility (theme/utilities.css); the contribution heatmap
+   lives in its own ContributionHeatmap component. */
 
 .activity__stats {
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
+  gap: var(--md-sys-spacing-2xl);
+  padding: var(--md-sys-spacing-2xl);
 }
 
 @container (min-width: 560px) {
   .activity__stats {
     grid-template-columns: repeat(4, 1fr);
   }
-}
-
-.activity__heatmap {
-  margin-top: var(--md-sys-spacing-2xl);
-  /* The 53-week grid has a ~474px min-content width; on narrow containers it
-     scrolls inside the card instead of overflowing the page. */
-  overflow-x: auto;
-}
-
-.activity__heatmap-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--md-sys-spacing-md);
-  margin-bottom: var(--md-sys-spacing-lg);
-}
-
-.activity__heatmap-title {
-  font-size: var(--md-sys-typescale-body-medium-size);
-  color: var(--md-sys-color-on-surface-variant);
-}
-
-.activity__heatmap-total {
-  font-family: var(--md-ref-typeface-mono);
-  font-size: var(--md-sys-typescale-title-medium-size);
-  font-variant-numeric: tabular-nums;
-  color: var(--md-sys-color-primary);
-}
-
-.activity__heatmap-grid {
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-rows: repeat(7, minmax(6px, 1fr));
-  grid-auto-columns: minmax(6px, 1fr);
-  gap: 3px;
-}
-
-.activity__cell {
-  aspect-ratio: 1;
-  border-radius: var(--md-sys-shape-corner-extra-small);
-  background-color: color-mix(in srgb, var(--md-sys-color-on-surface) 10%, transparent);
-}
-
-.activity__cell--l1 {
-  background-color: color-mix(in srgb, var(--md-sys-color-primary) 30%, transparent);
-}
-
-.activity__cell--l2 {
-  background-color: color-mix(in srgb, var(--md-sys-color-primary) 50%, transparent);
-}
-
-.activity__cell--l3 {
-  background-color: color-mix(in srgb, var(--md-sys-color-primary) 70%, transparent);
-}
-
-.activity__cell--l4 {
-  background-color: var(--md-sys-color-primary);
 }
 
 .activity__years {

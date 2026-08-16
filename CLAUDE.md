@@ -14,6 +14,7 @@ npm run build        # typecheck (tsc -b) then production build to dist/
 npm run typecheck    # TypeScript only
 npm run lint         # ESLint
 npm run check:i18n   # en/zh locale key parity + project description key check
+npm run stats:fetch  # regenerate src/data/stats.ts + contributions.ts from the GitHub API (needs gh auth)
 npm run preview      # serve the built dist/
 npm run theme:gen    # regenerate src/theme/colors.css from a seed color
 ```
@@ -28,19 +29,21 @@ npm run theme:gen    # regenerate src/theme/colors.css from a seed color
 All user-facing text lives in `src/i18n/locales/en.ts` and `src/i18n/locales/zh.ts` as nested TS objects with **mirrored keys**. Components never hardcode display strings. `src/data/projects.ts` stores only structured facts; each project's description lives under `projects.items.<id>` in the locale files. Adding a label or project means adding keys to **both** locales — `check:i18n` (run in CI) fails on any mismatch. English is the default regardless of browser language.
 
 ### Static data snapshots
-`src/data/profile.ts` (profile facts, `profileStats`) and `src/data/projects.ts` (star/fork counts) are **static snapshots** of GitHub API data, timestamped in their header comments (retrieved 2026-08-14). They are intentionally not live — refresh the numbers manually when they drift. `projects.ts` only lists account-owned repos (forks excluded) and `profile.ts` documents each figure's source.
+Two kinds, kept apart on purpose: **generated** (`src/data/stats.ts` account stats and `src/data/contributions.ts` 12-month contribution calendar — both rewritten in place by `npm run stats:fetch`, scripts/fetch-stats.mts; never edit them by hand) and **hand-maintained** (`src/data/profile.ts` for URLs/bio, `src/data/projects.ts` for star/fork counts). Intentionally not live — the site has no runtime backend. Forks are excluded everywhere. The Activity section's snapshot note interpolates `snapshotDate` from `stats.ts`, so regenerating needs no locale edits.
 
 ### Design system (M3 tokens)
 - `src/theme/tokens.css` — static M3 spec tokens: type scale, shape, elevation, spacing, motion, plus the glassmorphism tokens (`--md-glass-*`: blur, saturate, opacity, border, highlight).
 - `src/theme/colors.css` — **auto-generated** M3 color roles (light + dark) from a seed color by `scripts/gen-theme.mjs` (via `@material/material-color-utilities`). Do not edit by hand — change the seed and run `npm run theme:gen`, then commit.
-- `src/theme/global.css` — reset, base styles, fixed blurred `.site-bg`, and the layout.
+- `src/theme/base.css` — reset, base styles, fixed blurred `.site-bg`, scrollbar.
+- `src/theme/layout.css` — the split layout and its sticky rails.
+- `src/theme/utilities.css` — `.container`, `.visually-hidden`, `.spotlight`, and the shared `.glass-card` frosted-surface recipe.
 - Components read everything from these CSS variables — no hard-coded colors or dimensions in component styles.
 
 ### Theme & language persistence
 `src/hooks/useTheme.ts` cycles system → light → dark (default **dark**), persists to localStorage key `tuning-luna-theme`, and reflects the active mode via `data-theme` on `<html>` plus the `<meta name="theme-color">`. `src/i18n/index.ts` persists the choice to `tuning-luna-lang`. The inline `<script>` in `index.html` applies both saved prefs **before first paint** to avoid a light/Chinese flash — if you rename those localStorage keys, update the inline script too.
 
 ### Layout
-`src/App.tsx` composes: fixed `.site-bg` → `AppBar` → a split layout. Above 1200px there are two sticky frosted-glass asides (360px each): `aside.layout__hero` (Hero) on the left and `aside.layout__widgets` (PageViews / NowPlaying / MiniPlayer) on the right, with the scrolling content column between them; below 1200px it falls back to a single column (hero → widgets → content). Grids inside `.layout__content` size themselves with **container queries** (`container-type: inline-size`), not viewport media queries. Scroll-reveal is an IntersectionObserver in `App.tsx` that toggles `.pre-reveal` on `.m3-section` elements. All sections on disk (`About`, `TechStack`, `Projects`, `Activity`, `Contact`) are rendered in `App.tsx`.
+`src/App.tsx` composes: fixed `.site-bg` → `AppBar` → a split layout. Above 1200px there are two sticky frosted-glass asides (360px each): `aside.layout__hero` (Hero) on the left and `aside.layout__widgets` (PageViews / NowPlaying / MiniPlayer) on the right, with the scrolling content column between them; below 1200px it falls back to a single column (hero → widgets → content). Grids inside `.layout__content` size themselves with **container queries** (`container-type: inline-size`), not viewport media queries. Scroll-reveal is the `useScrollReveal` hook (`src/hooks/useScrollReveal.ts`) toggling `.pre-reveal` on `.m3-section` elements. All sections on disk (`About`, `TechStack`, `Projects`, `Activity`, `Contact`) are rendered in `App.tsx`.
 
 ### Sections & components
 Sections live in `src/sections/` and are individually imported in `App.tsx`; section-specific widgets (`MiniPlayer`, `ProjectCard`) live there too, beside their consumers. `MiniPlayer` itself is purely presentational — its audio engine (load states, track-switch fades, volume persistence, mute glides) lives in the headless `src/hooks/useAudioPlayer.ts`. `src/components/` holds the reusable M3 primitives (Button, Card, Chip, Icon, IconButton, Section, Slider, SmartImage, Stat) plus the app chrome (AppBar, Footer, LanguageToggle, ThemeToggle), all with **colocated CSS** (a `.css` beside each `.tsx`). `Section.tsx` is the shared wrapper (eyebrow + title + subtitle) and is what marks an element `.m3-section` for the scroll-reveal. Remote or slow-loading images (GitHub avatar, third-party cards/covers) go through `SmartImage` (`src/components/SmartImage.tsx`) — skeleton while loading, tonal fallback on error — instead of a bare `<img>`. The cursor halo on "personal" cards is `handleSpotlight` (`src/hooks/useSpotlight.ts`) writing `--spot-x` / `--spot-y`, consumed by the `.spotlight` CSS.

@@ -9,6 +9,7 @@
     "typecheck": "tsc -b",
     "lint": "eslint .",
     "check:i18n": "tsx scripts/check-i18n.mts",
+    "stats:fetch": "tsx scripts/fetch-stats.mts",
     "preview": "vite preview",
     "theme:gen": "tsx scripts/gen-theme.mjs"
   },
