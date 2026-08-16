@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import type { Project } from '../types'
 import { handleSpotlight } from '../hooks/useSpotlight'
-import { Card } from './Card'
-import { Chip } from './Chip'
-import { Icon } from './Icon'
+import { Card } from '../components/Card'
+import { Chip } from '../components/Chip'
+import { Icon } from '../components/Icon'
 import './ProjectCard.css'
 
 export function ProjectCard({ project }: { project: Project }) {

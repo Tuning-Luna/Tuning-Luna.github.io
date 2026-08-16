@@ -1,10 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import { Button } from '../components/Button'
-import { ProjectCard } from '../components/ProjectCard'
 import { Section } from '../components/Section'
-import { featuredProjects } from '../data/projects'
-import {courseProjects} from '../data/projects'
 import { profile } from '../data/profile'
+import { courseProjects, featuredProjects } from '../data/projects'
+import { ProjectCard } from './ProjectCard'
 import './Projects.css'
 
 export function Projects() {
@@ -44,7 +43,7 @@ export function Projects() {
             )}
           </li>
         ))}
-      </ul> 
+      </ul>
 
       <div className="projects__viewall">
         <Button href={`${profile.githubUrl}?tab=repositories`} variant="text">

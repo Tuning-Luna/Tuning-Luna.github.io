@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { TRACKS } from '../data/tracks'
-import { handleSpotlight } from '../hooks/useSpotlight'
+import { TRACKS, type Track } from '../data/tracks'
 import {
   easingEmphasizedAccelerate,
   easingEmphasizedDecelerate,
@@ -9,12 +7,6 @@ import {
   tween,
   type TweenHandle,
 } from '../utils/motion'
-import { Icon } from './Icon'
-import { IconButton } from './IconButton'
-import { Section } from './Section'
-import { Slider } from './Slider'
-import { SmartImage } from './SmartImage'
-import './MiniPlayer.css'
 
 /** Only show the loading spinner once buffering has persisted this long. */
 const SPINNER_DELAY_MS = 250
@@ -33,17 +25,16 @@ const GLIDE_MS = 200 // slider click-jump glide
 const MUTE_GLIDE_MS = 100 // mute snaps the handle to zero faster than it returns
 const FADE_OUT_MS = 200 // leaving a track
 const FADE_IN_MS = 300 // entering a track
-/** Wheel notches step the volume by this much (%). */
-const VOLUME_WHEEL_STEP = 5
 // Volume jumps smaller than this apply instantly (drags, keyboard nudges);
 // larger click-jumps glide from the previous position instead of teleporting.
 const VOLUME_GLIDE_THRESHOLD = 8
 
 /**
- * MD3 music player: album cover + track info + transport controls (previous /
- * play-pause / next) and a volume slider. The playlist comes from
- * `src/data/tracks` (every file in `src/assets/music/`), with playback URLs
- * already resolved to their final hashed asset paths at build time.
+ * Headless audio player for the built-in playlist (every file in
+ * `src/assets/music/`, see `src/data/tracks`): owns the `<audio>` element's
+ * entire lifecycle — load state, playback, track switching, fades and volume —
+ * so `MiniPlayer` stays a purely presentational section. The caller renders
+ * `<audio ref={audioRef} src={track.url} preload="metadata">`.
  *
  * `preload="metadata"` fetches just the audio header on page load (a few KB),
  * so a broken or unreachable file surfaces as an error state early. The full
@@ -55,7 +46,7 @@ const VOLUME_GLIDE_THRESHOLD = 8
  * All animation collapses to instant changes under `prefers-reduced-motion`
  * (audio fades are kept — they prevent clicks, not motion).
  */
-type Status = 'idle' | 'loading' | 'ready' | 'playing' | 'error'
+export type AudioPlayerStatus = 'idle' | 'loading' | 'ready' | 'playing' | 'error'
 
 const loadVolume = (): number => {
   try {
@@ -70,11 +61,10 @@ const loadVolume = (): number => {
   return DEFAULT_VOLUME
 }
 
-export function MiniPlayer() {
-  const { t } = useTranslation()
+export function useAudioPlayer() {
   const audioRef = useRef<HTMLAudioElement>(null)
   const [index, setIndex] = useState(0)
-  const [status, setStatus] = useState<Status>('idle')
+  const [status, setStatus] = useState<AudioPlayerStatus>('idle')
   const [showLoading, setShowLoading] = useState(false)
   const [volume, setVolume] = useState<number>(loadVolume)
   const [muted, setMuted] = useState(false)
@@ -96,7 +86,7 @@ export function MiniPlayer() {
    *  stale switch (rapid next/next/prev, or pausing during a fade). */
   const switchSeqRef = useRef(0)
 
-  const track = TRACKS[index]
+  const track: Track = TRACKS[index]
 
   /** Single place that writes the element volume: base (volume/mute state)
    *  times the switch-fade gain. Reads refs so animation frames never act on
@@ -338,10 +328,10 @@ export function MiniPlayer() {
     volumeGlideRef.current = null
     muteGlideRef.current?.cancel()
     muteGlideRef.current = null
-    const next = !muted
+    const nextMuted = !muted
     const from = muteGlide ?? (muted ? 0 : volume)
-    const to = next ? 0 : volume
-    setMuted(next) // the audio mutes instantly; only the handle glides
+    const to = nextMuted ? 0 : volume
+    setMuted(nextMuted) // the audio mutes instantly; only the handle glides
     if (prefersReducedMotion() || from === to) {
       setMuteGlide(null)
       return
@@ -353,8 +343,8 @@ export function MiniPlayer() {
     muteGlideRef.current = tween(
       from,
       to,
-      next ? MUTE_GLIDE_MS : GLIDE_MS,
-      next ? easingEmphasizedAccelerate : easingEmphasizedDecelerate,
+      nextMuted ? MUTE_GLIDE_MS : GLIDE_MS,
+      nextMuted ? easingEmphasizedAccelerate : easingEmphasizedDecelerate,
       (v) => setMuteGlide(v),
       () => {
         muteGlideRef.current = null
@@ -363,99 +353,21 @@ export function MiniPlayer() {
     )
   }
 
-  if (!track) return null
-
-  const isError = status === 'error'
-  const isPlaying = status === 'playing'
-  const label = isError
-    ? t('miniPlayer.error')
-    : showLoading
-      ? t('miniPlayer.loading')
-      : isPlaying
-        ? t('miniPlayer.pause')
-        : t('miniPlayer.play')
+  /** Where the volume handle visibly is (mid-glide value, or zero while muted). */
   const displayVolume = muteGlide ?? (muted ? 0 : volume)
-  const volumeIcon = displayVolume === 0 ? 'volumeMute' : displayVolume < 50 ? 'volumeLow' : 'volumeHigh'
 
-  return (
-    <Section
-      id="mini-player"
-      eyebrow={t('miniPlayer.eyebrow')}
-      title={t('miniPlayer.title')}
-      subtitle={t('miniPlayer.subtitle')}
-    >
-      <div className="mini-player spotlight" onMouseMove={handleSpotlight}>
-        <audio ref={audioRef} src={track.url} preload="metadata" />
-        <div className="mini-player__main">
-          <SmartImage
-            className="mini-player__cover"
-            src={track.coverUrl}
-            alt=""
-            width={56}
-            height={56}
-            fallback={<Icon name="music" size={24} />}
-          />
-          <span className="mini-player__info">
-            <span className="mini-player__title">{track.title}</span>
-            <span className="mini-player__artist">{track.artist}</span>
-          </span>
-          <span className="mini-player__transport">
-            <IconButton
-              icon="skipBack"
-              label={t('miniPlayer.prev')}
-              className="mini-player__skip"
-              onClick={prev}
-            />
-            <button
-              type="button"
-              className={[
-                'mini-player__play',
-                isError ? 'is-error' : '',
-                isPlaying ? 'is-playing' : '',
-              ]
-                .filter(Boolean)
-                .join(' ')}
-              aria-label={label}
-              title={label}
-              disabled={showLoading}
-              onClick={toggle}
-            >
-              {isError ? (
-                <Icon name="alert" size={24} />
-              ) : showLoading ? (
-                <span className="mini-player__spinner" aria-hidden="true" />
-              ) : (
-                <span className="mini-player__icons" aria-hidden="true">
-                  <Icon name="play" size={24} className="mini-player__icon mini-player__icon--play" />
-                  <Icon name="pause" size={24} className="mini-player__icon mini-player__icon--pause" />
-                </span>
-              )}
-            </button>
-            <IconButton
-              icon="skipForward"
-              label={t('miniPlayer.next')}
-              className="mini-player__skip"
-              onClick={next}
-            />
-          </span>
-        </div>
-        <div className="mini-player__volume">
-          <IconButton
-            icon={volumeIcon}
-            label={muted ? t('miniPlayer.unmute') : t('miniPlayer.mute')}
-            className="mini-player__mute"
-            onClick={toggleMute}
-          />
-          <Slider
-            label={t('miniPlayer.volume')}
-            value={displayVolume}
-            max={100}
-            wheelStep={VOLUME_WHEEL_STEP}
-            valueText={`${Math.round(displayVolume)}%`}
-            onChange={onVolumeInput}
-          />
-        </div>
-      </div>
-    </Section>
-  )
+  return {
+    /** Attach to the `<audio>` element the caller renders. */
+    audioRef,
+    track,
+    status,
+    showLoading,
+    toggle,
+    prev,
+    next,
+    muted,
+    displayVolume,
+    onVolumeInput,
+    toggleMute,
+  }
 }
