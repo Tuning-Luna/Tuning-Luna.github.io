@@ -9,7 +9,12 @@ const STORAGE_KEY = 'tuning-luna-lang'
  *  previously saved choice. The user can still switch languages manually. */
 function detectLanguage(): 'zh' | 'en' {
   if (typeof window === 'undefined') return 'en'
-  const stored = window.localStorage.getItem(STORAGE_KEY)
+  let stored: string | null = null
+  try {
+    stored = window.localStorage.getItem(STORAGE_KEY)
+  } catch {
+    // localStorage unavailable (blocked, private mode…) — default to English.
+  }
   if (stored === 'zh' || stored === 'en') return stored
   return 'en'
 }
@@ -31,7 +36,11 @@ document.documentElement.lang = initial
 i18n.on('languageChanged', (lng) => {
   document.documentElement.lang = lng
   if (lng === 'zh' || lng === 'en') {
-    window.localStorage.setItem(STORAGE_KEY, lng)
+    try {
+      window.localStorage.setItem(STORAGE_KEY, lng)
+    } catch {
+      // Storage unavailable — the choice just won't persist.
+    }
   }
 })
 

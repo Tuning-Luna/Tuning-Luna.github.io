@@ -6,7 +6,12 @@ const STORAGE_KEY = 'tuning-luna-theme'
 
 function getInitialMode(): ThemeMode {
   if (typeof window === 'undefined') return 'dark'
-  const stored = window.localStorage.getItem(STORAGE_KEY)
+  let stored: string | null = null
+  try {
+    stored = window.localStorage.getItem(STORAGE_KEY)
+  } catch {
+    // localStorage unavailable (blocked, private mode…) — use the default.
+  }
   if (stored === 'light' || stored === 'dark' || stored === 'system') return stored
   // Default to dark, regardless of the OS preference.
   return 'dark'
@@ -36,7 +41,11 @@ export function useTheme() {
 
   useEffect(() => {
     applyMode(mode)
-    window.localStorage.setItem(STORAGE_KEY, mode)
+    try {
+      window.localStorage.setItem(STORAGE_KEY, mode)
+    } catch {
+      // Storage unavailable — the choice just won't persist.
+    }
     // Keep the browser-chrome color accurate when the OS theme flips in system mode.
     const mql = window.matchMedia('(prefers-color-scheme: dark)')
     const onChange = () => mode === 'system' && applyMode(mode)
@@ -48,5 +57,5 @@ export function useTheme() {
     setMode((m) => (m === 'system' ? 'light' : m === 'light' ? 'dark' : 'system'))
   }, [])
 
-  return { mode, setMode, cycle }
+  return { mode, cycle }
 }

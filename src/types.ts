@@ -17,10 +17,3 @@ export interface TechGroup {
   id: string
   items: string[]
 }
-
-export interface StatItem {
-  id: string
-  value: number | string
-  /** i18n key suffix under activity.stats */
-  labelKey: string
-}
