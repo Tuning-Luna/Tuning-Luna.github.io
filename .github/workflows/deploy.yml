@@ -54,15 +54,16 @@ jobs:
         run: npm ci
 
       # Regenerate the stats snapshots from the GitHub API and commit them if
-      # anything changed — on every trigger (push, schedule, dispatch). The
-      # build below uses the refreshed working tree, so the deployed site is
-      # current even if the push below is rejected (e.g. a newer commit landed
-      # mid-run); the next run re-commits then.
+      # anything changed — on every trigger (push, schedule, dispatch), best
+      # effort: a failed refresh only warns and the build continues with the
+      # committed snapshots. The build below uses the refreshed working tree,
+      # so the deployed site is current even if the push below is rejected
+      # (e.g. a newer commit landed mid-run); the next run re-commits then.
       - name: Refresh stats snapshots
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          npm run stats:fetch
+          npm run stats:fetch || echo '::warning::stats refresh failed; deploying with the committed snapshots'
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           if git diff --quiet -- src/data/stats.ts src/data/contributions.ts; then

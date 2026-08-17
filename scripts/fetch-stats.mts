@@ -62,7 +62,12 @@ interface GhRepo {
   fork: boolean
 }
 
-const user = await api<GhUser>('/user')
+// Public profile of the account owner. NEVER call `/user` here: it returns the
+// *authenticated* user's private view, which the Actions GITHUB_TOKEN is not
+// allowed to read (403 "Resource not accessible by integration"). Everything
+// this script needs (followers, public_repos, created_at) is in the public
+// profile, readable by any token — including CI's.
+const user = await api<GhUser>(`/users/${LOGIN}`)
 
 // Owner repos (public and private alike); forks are not the user's own work.
 let stars = 0
