@@ -12,7 +12,7 @@ import type { ContributionDay } from '../types'
 export const contributionCalendar = {
   retrievedAt: '2026-08-17',
   /** Contributions inside the calendar window. */
-  total: 714,
+  total: 715,
   weeks: [
   [
     { date: '2025-08-17', count: 1, level: 1 },
@@ -123,8 +123,8 @@ export const contributionCalendar = {
     { date: '2025-11-08', count: 0, level: 0 },
   ],
   [
-    { date: '2025-11-09', count: 0, level: 0 },
-    { date: '2025-11-10', count: 3, level: 2 },
+    { date: '2025-11-09', count: 1, level: 1 },
+    { date: '2025-11-10', count: 2, level: 2 },
     { date: '2025-11-11', count: 3, level: 2 },
     { date: '2025-11-12', count: 8, level: 4 },
     { date: '2025-11-13', count: 6, level: 4 },
@@ -351,8 +351,8 @@ export const contributionCalendar = {
     { date: '2026-05-03', count: 1, level: 1 },
     { date: '2026-05-04', count: 0, level: 0 },
     { date: '2026-05-05', count: 10, level: 4 },
-    { date: '2026-05-06', count: 1, level: 1 },
-    { date: '2026-05-07', count: 3, level: 2 },
+    { date: '2026-05-06', count: 2, level: 2 },
+    { date: '2026-05-07', count: 2, level: 2 },
     { date: '2026-05-08', count: 5, level: 3 },
     { date: '2026-05-09', count: 14, level: 4 },
   ],
@@ -484,7 +484,7 @@ export const contributionCalendar = {
   ],
   [
     { date: '2026-08-16', count: 18, level: 4 },
-    { date: '2026-08-17', count: 9, level: 4 },
+    { date: '2026-08-17', count: 10, level: 4 },
   ],
   ] as ContributionDay[][],
 } as const
