@@ -23,6 +23,8 @@ export function MiniPlayer() {
   const {
     audioRef,
     track,
+    trackIndex,
+    trackCount,
     status,
     showLoading,
     toggle,
@@ -67,7 +69,18 @@ export function MiniPlayer() {
           />
           <span className="mini-player__info">
             <span className="mini-player__title">{track.title}</span>
-            <span className="mini-player__artist">{track.artist}</span>
+            <span className="mini-player__meta">
+              <span className="mini-player__artist">{track.artist}</span>
+              <span
+                className="mini-player__position"
+                aria-label={t('miniPlayer.trackPosition', {
+                  current: trackIndex + 1,
+                  total: trackCount,
+                })}
+              >
+                {trackIndex + 1}/{trackCount}
+              </span>
+            </span>
           </span>
           <span className="mini-player__transport">
             <IconButton

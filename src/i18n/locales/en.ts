@@ -36,6 +36,7 @@ export default {
     unmute: 'Unmute',
     loading: 'Loading…',
     error: 'Audio failed to load',
+    trackPosition: 'Track {{current}} of {{total}}',
   },
   about: {
     eyebrow: 'About',

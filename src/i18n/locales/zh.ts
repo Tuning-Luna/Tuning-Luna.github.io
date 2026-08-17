@@ -36,6 +36,7 @@ export default {
     unmute: '取消静音',
     loading: '加载中…',
     error: '音频加载失败',
+    trackPosition: '第 {{current}} / {{total}} 首',
   },
   about: {
     eyebrow: '关于',

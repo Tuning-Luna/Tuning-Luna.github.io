@@ -360,6 +360,10 @@ export function useAudioPlayer() {
     /** Attach to the `<audio>` element the caller renders. */
     audioRef,
     track,
+    /** Current track's zero-based index in the playlist. */
+    trackIndex: index,
+    /** Total number of tracks in the built-in playlist. */
+    trackCount: TRACKS.length,
     status,
     showLoading,
     toggle,
