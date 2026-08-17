@@ -57,7 +57,6 @@ export default {
   stack: {
     eyebrow: 'Tech Stack',
     title: 'Tools & Technologies',
-    subtitle: 'Self-reported stack from my GitHub profile README, cross-checked with my repositories.',
     groups: {
       languages: 'Languages',
       frontend: 'Frontend',
@@ -106,7 +105,6 @@ export default {
   activity: {
     eyebrow: 'Activity',
     title: 'GitHub Activity',
-    subtitle: 'Public contribution statistics, snapshot from the GitHub API.',
     stats: {
       totalStars: 'Total stars',
       publicRepos: 'Public repos',

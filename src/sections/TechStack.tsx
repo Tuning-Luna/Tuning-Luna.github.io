@@ -8,12 +8,7 @@ export function TechStack() {
   const { t } = useTranslation()
 
   return (
-    <Section
-      id="stack"
-      eyebrow={t('stack.eyebrow')}
-      title={t('stack.title')}
-      subtitle={t('stack.subtitle')}
-    >
+    <Section id="stack" eyebrow={t('stack.eyebrow')} title={t('stack.title')}>
       <div className="stack">
         {techGroups.map((group) => (
           <div className="stack__group" key={group.id}>

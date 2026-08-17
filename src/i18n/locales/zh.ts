@@ -52,7 +52,6 @@ export default {
   stack: {
     eyebrow: '技术栈',
     title: '工具与技术',
-    subtitle: '来自 GitHub Profile README 的自述技术栈，并与仓库信息交叉核对。',
     groups: {
       languages: '编程语言',
       frontend: '前端',
@@ -93,7 +92,6 @@ export default {
   activity: {
     eyebrow: '动态',
     title: 'GitHub 活跃情况',
-    subtitle: '公开贡献统计，来源于 GitHub API。',
     stats: {
       totalStars: 'Star 总数',
       publicRepos: '公开仓库',

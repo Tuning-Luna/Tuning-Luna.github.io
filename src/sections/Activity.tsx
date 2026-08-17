@@ -10,12 +10,7 @@ export function Activity() {
   const { t } = useTranslation()
 
   return (
-    <Section
-      id="activity"
-      eyebrow={t('activity.eyebrow')}
-      title={t('activity.title')}
-      subtitle={t('activity.subtitle')}
-    >
+    <Section id="activity" eyebrow={t('activity.eyebrow')} title={t('activity.title')}>
       <div className="glass-card activity__stats">
         <Stat icon="star" value={profileStats.totalStars} label={t('activity.stats.totalStars')} />
         <Stat icon="folder" value={profileStats.publicRepos} label={t('activity.stats.publicRepos')} />
