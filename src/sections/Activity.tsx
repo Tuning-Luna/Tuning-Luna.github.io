@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { Chip } from '../components/Chip'
 import { Section } from '../components/Section'
 import { Stat } from '../components/Stat'
-import { profileStats, snapshotDate } from '../data/stats'
+import { profileStats } from '../data/stats'
 import { ContributionHeatmap } from './ContributionHeatmap'
 import './Activity.css'
 
@@ -28,8 +28,6 @@ export function Activity() {
           ))}
         </div>
       </div>
-
-      <p className="activity__note">{t('activity.note', { date: snapshotDate })}</p>
     </Section>
   )
 }
