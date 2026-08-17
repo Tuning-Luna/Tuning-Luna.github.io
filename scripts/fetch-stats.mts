@@ -3,9 +3,10 @@
  *   src/data/stats.ts          — account stats (stars/repos/followers/commits)
  *   src/data/contributions.ts  — 12-month contribution calendar
  *
- * Run: npm run stats:fetch   (requires the gh CLI, authenticated)
+ * Run: npm run stats:fetch
  *
- * Reads the GitHub REST + GraphQL APIs with the token from `gh auth token`.
+ * Auth: GH_TOKEN or GITHUB_TOKEN env var if set (this is how the scheduled
+ * GitHub Actions workflow calls it), otherwise the authenticated gh CLI.
  * The site itself stays backend-free: this is a dev-time generator only.
  */
 import { execFileSync } from 'node:child_process'
@@ -22,15 +23,17 @@ const API = 'https://api.github.com'
 const level = (count: number): 0 | 1 | 2 | 3 | 4 =>
   count === 0 ? 0 : count === 1 ? 1 : count <= 3 ? 2 : count <= 5 ? 3 : 4
 
-function ghToken(): string {
+function resolveToken(): string {
+  const fromEnv = process.env.GH_TOKEN ?? process.env.GITHUB_TOKEN
+  if (fromEnv) return fromEnv
   try {
     return execFileSync('gh', ['auth', 'token'], { encoding: 'utf8' }).trim()
   } catch {
-    throw new Error('gh CLI not available or not authenticated — run `gh auth login` first.')
+    throw new Error('no token: set GH_TOKEN/GITHUB_TOKEN or run `gh auth login`.')
   }
 }
 
-const token = ghToken()
+const token = resolveToken()
 
 async function api<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${API}${path}`, {

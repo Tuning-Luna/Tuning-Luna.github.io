@@ -20,7 +20,7 @@ npm run theme:gen    # regenerate src/theme/colors.css from seed color #18F741 (
 ```
 
 - There are **no tests**. Verification is `lint` + `typecheck` + `check:i18n` + manual visual check in the dev server.
-- CI (`.github/workflows/deploy.yml`) runs lint, check:i18n, and build on every push to `main`, then deploys `dist/` to GitHub Pages. `dist/` is gitignored.
+- CI (`.github/workflows/deploy.yml`) runs lint, check:i18n, and build on every push to `main`, then deploys `dist/` to GitHub Pages. Scheduled daily runs (and manual dispatches) first refresh the stats snapshots via `npm run stats:fetch` (using the workflow's `GITHUB_TOKEN`) and commit them back to `main` as `github-actions[bot]` — the site's star/follower/contribution numbers stay current without manual runs. `dist/` is gitignored.
 
 ## Architecture
 

@@ -5,12 +5,22 @@
 #
 # Follows the official Vite deployment guide (https://vite.dev/guide/static-deploy)
 # and the GitHub Pages Actions (configure-pages / upload-pages-artifact / deploy-pages).
+#
+# Scheduled runs additionally refresh the GitHub stats snapshots
+# (src/data/stats.ts + src/data/contributions.ts via `npm run stats:fetch`)
+# and commit them back to main, so star/follower/contribution numbers stay
+# current without anyone running the script by hand. Pushes made with the
+# workflow's GITHUB_TOKEN never re-trigger workflows, so there is no loop.
 
 name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main]
+  schedule:
+    # Daily at 16:23 UTC = 00:23 Asia/Shanghai (next day). Minute 23 avoids
+    # GitHub's top-of-hour cron congestion.
+    - cron: '23 16 * * *'
   workflow_dispatch:
 
 # Allow only one concurrent deployment, cancel any run queued while one is running.
@@ -19,7 +29,7 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  contents: read
+  contents: write # the scheduled refresh step pushes the stats commit
   pages: write
   id-token: write
 
@@ -41,6 +51,26 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      # Scheduled/manual runs only: regenerate the stats snapshots from the
+      # GitHub API and commit them if anything changed. The build below uses
+      # the refreshed working tree either way, so the deployed site is current
+      # even if the push is blocked.
+      - name: Refresh stats snapshots
+        if: github.event_name != 'push'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npm run stats:fetch
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if git diff --quiet -- src/data/stats.ts src/data/contributions.ts; then
+            echo 'stats snapshots unchanged — nothing to commit'
+          else
+            git add src/data/stats.ts src/data/contributions.ts
+            git commit -m 'chore(data): refresh GitHub stats snapshots [skip ci]'
+            git push
+          fi
 
       - name: Lint & i18n check
         run: npm run lint && npm run check:i18n
