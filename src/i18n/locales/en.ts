@@ -113,8 +113,11 @@ export default {
       followers: 'Followers',
       totalCommits: 'Commits',
     },
-    yearsLabel: 'Active since',
+    yearsLabel: 'Active years',
+    heatmapLabel: 'Last 12 months',
     heatmapTitle: 'contributions in the last 12 months',
+    legendLess: 'Less',
+    legendMore: 'More',
   },
   contact: {
     eyebrow: 'Contact',

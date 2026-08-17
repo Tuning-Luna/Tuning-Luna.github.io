@@ -101,7 +101,10 @@ export default {
       totalCommits: '提交贡献',
     },
     yearsLabel: '活跃年份',
+    heatmapLabel: '近 12 个月',
     heatmapTitle: '次贡献 · 近 12 个月',
+    legendLess: '少',
+    legendMore: '多',
   },
   contact: {
     eyebrow: '联系',
