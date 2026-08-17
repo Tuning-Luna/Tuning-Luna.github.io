@@ -123,7 +123,7 @@ export default {
   },
   footer: {
     builtWith: '使用 React 与 Material Design 3 构建',
-    snapshotNote: '内容为 GitHub 公开数据快照（2026-08-14）。',
+    snapshotNote: '内容为 GitHub 公开数据快照（{{date}}）。',
   },
   a11y: {
     theme: '切换颜色主题',

@@ -136,7 +136,7 @@ export default {
   },
   footer: {
     builtWith: 'Built with React & Material Design 3',
-    snapshotNote: 'Content is a snapshot of public GitHub data (2026-08-14).',
+    snapshotNote: 'Content is a snapshot of public GitHub data ({{date}}).',
   },
   a11y: {
     theme: 'Toggle color theme',
