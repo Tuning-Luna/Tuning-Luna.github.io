@@ -16,6 +16,7 @@ export default {
     ctaDiscord: 'Discord',
     ctaTelegram: 'Telegram',
     ctaSpotify: 'Spotify',
+    ctaBilibili: 'Bilibili',
     stats: {
       repos: 'Public repos',
       stars: 'Total stars',
@@ -124,6 +125,7 @@ export default {
     discord: { label: 'Discord', desc: 'Chat with me' },
     telegram: { label: 'Telegram', desc: 'Message me' },
     spotify: { label: 'Spotify', desc: 'My playlists' },
+    bilibili: { label: 'Bilibili', desc: 'My videos' },
   },
   nowPlaying: {
     eyebrow: 'Spotify',

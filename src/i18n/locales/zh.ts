@@ -16,6 +16,7 @@ export default {
     ctaDiscord: 'Discord',
     ctaTelegram: 'Telegram',
     ctaSpotify: 'Spotify',
+    ctaBilibili: 'Bilibili',
     stats: {
       repos: '公开仓库',
       stars: 'Star 总数',
@@ -111,6 +112,7 @@ export default {
     discord: { label: 'Discord', desc: '和我聊天' },
     telegram: { label: 'Telegram', desc: '私聊我' },
     spotify: { label: 'Spotify', desc: '我的歌单' },
+    bilibili: { label: 'Bilibili', desc: '我的视频' },
   },
   nowPlaying: {
     eyebrow: 'Spotify',
