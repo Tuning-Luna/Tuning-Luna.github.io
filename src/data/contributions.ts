@@ -12,7 +12,7 @@ import type { ContributionDay } from '../types'
 export const contributionCalendar = {
   retrievedAt: '2026-08-17',
   /** Contributions inside the calendar window. */
-  total: 706,
+  total: 713,
   weeks: [
   [
     { date: '2025-08-17', count: 1, level: 1 },
@@ -484,7 +484,7 @@ export const contributionCalendar = {
   ],
   [
     { date: '2026-08-16', count: 18, level: 4 },
-    { date: '2026-08-17', count: 1, level: 1 },
+    { date: '2026-08-17', count: 8, level: 4 },
   ],
   ] as ContributionDay[][],
 } as const

@@ -21,7 +21,7 @@ npm run theme:gen    # regenerate src/theme/colors.css from a seed color
 
 - There are **no tests**. Verification is `lint` + `typecheck` (part of `build`) + `check:i18n` + a manual visual check in the dev server.
 - `npm run theme:gen` uses seed color `#18F741` by default; override with `SEED_COLOR=#hex`.
-- CI (`.github/workflows/deploy.yml`) runs `lint`, `check:i18n`, and `build` on every push to `main`, then deploys `dist/` to GitHub Pages. `dist/` is gitignored (build artifact). Scheduled daily runs (and manual dispatches) first refresh the stats snapshots via `npm run stats:fetch` (workflow `GITHUB_TOKEN`, no secrets needed) and push them back to `main` as `github-actions[bot]` with `[skip ci]` — pushes made with `GITHUB_TOKEN` don't re-trigger workflows, so there is no loop.
+- CI (`.github/workflows/deploy.yml`) runs `lint`, `check:i18n`, and `build`, then deploys `dist/` to GitHub Pages. `dist/` is gitignored (build artifact). **Every run — push to `main`, daily schedule (16:23 UTC), or manual dispatch — first refreshes the stats snapshots** via `npm run stats:fetch` (workflow `GITHUB_TOKEN`, no secrets needed) and pushes them back to `main` as `github-actions[bot]` with `[skip ci]` when they changed; a rejected push is non-fatal (build uses the refreshed working tree). Pushes made with `GITHUB_TOKEN` don't re-trigger workflows, so there is no loop.
 
 ## Architecture
 

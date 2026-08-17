@@ -6,11 +6,12 @@
 # Follows the official Vite deployment guide (https://vite.dev/guide/static-deploy)
 # and the GitHub Pages Actions (configure-pages / upload-pages-artifact / deploy-pages).
 #
-# Scheduled runs additionally refresh the GitHub stats snapshots
-# (src/data/stats.ts + src/data/contributions.ts via `npm run stats:fetch`)
-# and commit them back to main, so star/follower/contribution numbers stay
-# current without anyone running the script by hand. Pushes made with the
-# workflow's GITHUB_TOKEN never re-trigger workflows, so there is no loop.
+# EVERY run (push to main, daily schedule, manual dispatch) first refreshes the
+# GitHub stats snapshots (src/data/stats.ts + src/data/contributions.ts via
+# `npm run stats:fetch`) and commits them back to main when they changed, so
+# star/follower/contribution numbers are current on every deploy. Pushes made
+# with the workflow's GITHUB_TOKEN never re-trigger workflows, so there is no
+# loop.
 
 name: Deploy to GitHub Pages
 
@@ -52,12 +53,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Scheduled/manual runs only: regenerate the stats snapshots from the
-      # GitHub API and commit them if anything changed. The build below uses
-      # the refreshed working tree either way, so the deployed site is current
-      # even if the push is blocked.
+      # Regenerate the stats snapshots from the GitHub API and commit them if
+      # anything changed — on every trigger (push, schedule, dispatch). The
+      # build below uses the refreshed working tree, so the deployed site is
+      # current even if the push below is rejected (e.g. a newer commit landed
+      # mid-run); the next run re-commits then.
       - name: Refresh stats snapshots
-        if: github.event_name != 'push'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -69,7 +70,7 @@ jobs:
           else
             git add src/data/stats.ts src/data/contributions.ts
             git commit -m 'chore(data): refresh GitHub stats snapshots [skip ci]'
-            git push
+            git push || echo '::warning::stats commit not pushed (a newer commit likely landed); deploying with the refreshed working tree anyway'
           fi
 
       - name: Lint & i18n check
