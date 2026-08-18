@@ -118,6 +118,8 @@ export default {
     heatmapTitle: 'contributions in the last 12 months',
     legendLess: 'Less',
     legendMore: 'More',
+    tooltipContributions: 'contributions',
+    tooltipOn: 'on',
   },
   contact: {
     eyebrow: 'Contact',

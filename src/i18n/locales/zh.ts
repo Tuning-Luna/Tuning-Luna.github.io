@@ -105,6 +105,8 @@ export default {
     heatmapTitle: '次贡献 · 近 12 个月',
     legendLess: '少',
     legendMore: '多',
+    tooltipContributions: '次贡献',
+    tooltipOn: '',
   },
   contact: {
     eyebrow: '联系',
