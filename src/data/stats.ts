@@ -16,7 +16,7 @@ export const profileStats = {
   publicRepos: 24,
   followers: 16,
   /** Total commit contributions (GitHub profile contribution graph), 2023–2026. */
-  totalCommits: 1129,
+  totalCommits: 1130,
   /** Years with contributions, ascending. */
   contributionYears: ['2023', '2024', '2025', '2026'] as const,
 } as const
