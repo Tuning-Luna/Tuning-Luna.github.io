@@ -13,6 +13,7 @@ export const profile = {
   telegramUrl: 'https://t.me/Bannister4529_bot',
   spotifyUrl: 'https://open.spotify.com/user/31d6ybszeq4mxs3khxyautsuexty',
   bilibiliUrl: 'https://space.bilibili.com/416066123',
+  blogUrl: 'https://tuning-luna.github.io/blog/',
   /** Page-view counter badge (count.getloli.com, Cloudflare-protected). */
   pageViewsUrl: 'https://count.getloli.com/get/@Tuning-Luna?theme=rule34',
   spotifyUid: '31d6ybszeq4mxs3khxyautsuexty',

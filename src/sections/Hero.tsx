@@ -53,6 +53,10 @@ export function Hero() {
             <Icon name="bilibili" size={16} />
             {t('hero.ctaBilibili')}
           </Button>
+          <Button href={profile.blogUrl} variant="tonal">
+            <Icon name="blog" size={16} />
+            {t('hero.ctaBlog')}
+          </Button>
           <Button href="#projects">{t('hero.ctaProjects')}</Button>
         </div>
       </div>

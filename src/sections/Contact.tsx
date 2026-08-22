@@ -18,6 +18,7 @@ const LINKS: ContactLink[] = [
   { id: 'telegram', href: profile.telegramUrl, icon: 'telegram' },
   { id: 'spotify', href: profile.spotifyUrl, icon: 'spotify' },
   { id: 'bilibili', href: profile.bilibiliUrl, icon: 'bilibili' },
+  { id: 'blog', href: profile.blogUrl, icon: 'blog' },
 ] as const
 
 export function Contact() {

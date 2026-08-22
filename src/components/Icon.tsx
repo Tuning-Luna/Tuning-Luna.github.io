@@ -7,6 +7,7 @@ export type IconName =
   | 'telegram'
   | 'spotify'
   | 'bilibili'
+  | 'blog'
   | 'external'
   | 'arrowRight'
   | 'sun'
@@ -61,6 +62,7 @@ const STROKE: Partial<Record<IconName, string>> = {
   bilibili: undefined,
   discord: undefined,
   spotify: undefined,
+  blog: 'M12 20h9M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z',
   external: 'M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6',
   arrowRight: 'M5 12h14M12 5l7 7-7 7',
   play: 'M8 5v14l11-7z',
