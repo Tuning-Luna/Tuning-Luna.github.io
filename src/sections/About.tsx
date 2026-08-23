@@ -16,7 +16,7 @@ export function About() {
 
   const text1 = t('about.p1')
   const text2 = t('about.p2')
-  const { value } = useTypewriter(`${text1}${P1_P2_SEPARATOR}${text2}`)
+  const { value } = useTypewriter(`${text1}${P1_P2_SEPARATOR}${text2}`, { intervalMs: 12 })
 
   // Reserve the paragraphs' final height up front (measured from a hidden
   // full-text clone) so typing never pushes the sections below down.
