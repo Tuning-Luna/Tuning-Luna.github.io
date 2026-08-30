@@ -8,7 +8,7 @@
  */
 
 /** ISO date the snapshots below (and contributions.ts) were retrieved. */
-export const snapshotDate = '2026-08-29'
+export const snapshotDate = '2026-08-30'
 
 export const profileStats = {
   /** Sum of stars across non-fork public repositories. */
