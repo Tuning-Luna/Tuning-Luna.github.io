@@ -1,6 +1,6 @@
 /**
- * GitHub contribution calendar snapshot (last 12 months, 2025-09-07 → 2026-09-08),
- * retrieved 2026-09-08 via the GraphQL contributionsCollection API
+ * GitHub contribution calendar snapshot (last 12 months, 2025-09-07 → 2026-09-09),
+ * retrieved 2026-09-09 via the GraphQL contributionsCollection API
  * (npm run stats:fetch regenerates it).
  *
  * Weeks are column-major like GitHub's graph: weeks[i] is a Sun-Sat column.
@@ -10,9 +10,9 @@
 import type { ContributionDay } from '../types'
 
 export const contributionCalendar = {
-  retrievedAt: '2026-09-08',
+  retrievedAt: '2026-09-09',
   /** Contributions inside the calendar window. */
-  total: 787,
+  total: 827,
   weeks: [
   [
     { date: '2025-09-07', count: 0, level: 0 },
@@ -435,20 +435,20 @@ export const contributionCalendar = {
     { date: '2026-07-29', count: 0, level: 0 },
     { date: '2026-07-30', count: 4, level: 3 },
     { date: '2026-07-31', count: 1, level: 1 },
-    { date: '2026-08-01', count: 0, level: 0 },
+    { date: '2026-08-01', count: 1, level: 1 },
   ],
   [
-    { date: '2026-08-02', count: 0, level: 0 },
-    { date: '2026-08-03', count: 1, level: 1 },
+    { date: '2026-08-02', count: 9, level: 4 },
+    { date: '2026-08-03', count: 14, level: 4 },
     { date: '2026-08-04', count: 0, level: 0 },
     { date: '2026-08-05', count: 0, level: 0 },
     { date: '2026-08-06', count: 0, level: 0 },
-    { date: '2026-08-07', count: 0, level: 0 },
+    { date: '2026-08-07', count: 4, level: 3 },
     { date: '2026-08-08', count: 0, level: 0 },
   ],
   [
     { date: '2026-08-09', count: 0, level: 0 },
-    { date: '2026-08-10', count: 1, level: 1 },
+    { date: '2026-08-10', count: 3, level: 2 },
     { date: '2026-08-11', count: 0, level: 0 },
     { date: '2026-08-12', count: 1, level: 1 },
     { date: '2026-08-13', count: 2, level: 2 },
@@ -486,6 +486,7 @@ export const contributionCalendar = {
     { date: '2026-09-06', count: 2, level: 2 },
     { date: '2026-09-07', count: 3, level: 2 },
     { date: '2026-09-08', count: 0, level: 0 },
+    { date: '2026-09-09', count: 11, level: 4 },
   ],
   ] as ContributionDay[][],
 } as const
