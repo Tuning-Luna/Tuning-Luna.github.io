@@ -58,9 +58,18 @@ interface GhUser {
 }
 
 interface GhRepo {
+  name: string
   stargazers_count: number
+  forks_count: number
+  language: string | null
+  archived: boolean
   fork: boolean
+  private: boolean
 }
+
+/** GitHub repo names and linguist language names never contain quotes, but the
+ *  emitted file is TypeScript — escape rather than rely on that. */
+const tsString = (value: string) => value.replace(/\\/g, '\\\\').replace(/'/g, "\\'")
 
 // Public profile of the account owner. NEVER call `/user` here: it returns the
 // *authenticated* user's private view, which the Actions GITHUB_TOKEN is not
@@ -71,11 +80,27 @@ const user = await api<GhUser>(`/users/${LOGIN}`)
 
 // Owner repos (public and private alike); forks are not the user's own work.
 let stars = 0
+const repoStats = new Map<string, { stars: number; forks: number; language: string; archived: boolean }>()
 for (let page = 1; ; page++) {
   const repos = await api<GhRepo[]>(
     `/users/${LOGIN}/repos?per_page=100&page=${page}&type=owner`,
   )
-  for (const repo of repos) if (!repo.fork) stars += repo.stargazers_count
+  for (const repo of repos) {
+    if (repo.fork) continue
+    stars += repo.stargazers_count
+    // repoStats.ts is committed to a *public* repository, so it may only ever
+    // name public repositories. `type=owner` also returns the account's private
+    // ones when the token belongs to the user (the `gh auth token` path used
+    // locally — CI's installation token only sees public repos), so this filter
+    // is load-bearing, not defensive.
+    if (repo.private || !repo.language) continue
+    repoStats.set(repo.name, {
+      stars: repo.stargazers_count,
+      forks: repo.forks_count,
+      language: repo.language,
+      archived: repo.archived,
+    })
+  }
   if (repos.length < 100) break
 }
 
@@ -140,8 +165,9 @@ const statsTs = `/**
  *
  * Regenerate with \`npm run stats:fetch\` (scripts/fetch-stats.mts), which
  * queries the GitHub API through the authenticated gh CLI and rewrites this
- * file and src/data/contributions.ts in place. Hand-maintained profile facts
- * (URLs, bio) live separately in src/data/profile.ts.
+ * file, src/data/contributions.ts and src/data/repoStats.ts in place.
+ * Hand-maintained profile facts (URLs, bio) live separately in
+ * src/data/profile.ts.
  */
 
 /** ISO date the snapshots below (and contributions.ts) were retrieved. */
@@ -193,8 +219,35 @@ ${weeksBlock}
 } as const
 `
 
+// Deterministic (code-unit) ordering so the file only changes when the data
+// does — a locale-dependent sort would make CI commit spurious diffs.
+const repoRows = [...repoStats.entries()].sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
+const repoStatsTs = `/**
+ * Per-repository GitHub snapshot — GENERATED FILE, do not edit by hand.
+ *
+ * Regenerate with \`npm run stats:fetch\` (scripts/fetch-stats.mts), which also
+ * rewrites src/data/stats.ts and src/data/contributions.ts. Only public,
+ * non-fork repositories owned by the account appear here: forks are not the
+ * account's own work, and private repository names must never be committed to
+ * this public repository.
+ *
+ * Which repositories are *listed on the site* is a separate, hand-made choice:
+ * src/data/projects.ts holds the curation and joins it with this table by
+ * repository name.
+ */
+import type { RepoStat } from '../types'
+
+/** ISO date this snapshot was retrieved. */
+export const repoStatsDate = '${date}'
+
+export const repoStats = {
+${repoRows.map(([name, s]) => `  '${tsString(name)}': { stars: ${s.stars}, forks: ${s.forks}, language: '${tsString(s.language)}', archived: ${s.archived} },`).join('\n')}
+} satisfies Record<string, RepoStat>
+`
+
 writeFileSync(resolve(ROOT, 'src/data/stats.ts'), statsTs)
 writeFileSync(resolve(ROOT, 'src/data/contributions.ts'), contributionsTs)
+writeFileSync(resolve(ROOT, 'src/data/repoStats.ts'), repoStatsTs)
 
 console.log(
   `stats.ts: ${stars} stars, ${user.public_repos} repos, ${user.followers} followers, ${totalCommits} commits (${firstYear}–${currentYear})`,
@@ -202,3 +255,4 @@ console.log(
 console.log(
   `contributions.ts: ${calendar.totalContributions} contributions, ${calendar.weeks.length} weeks (${firstDay} → ${lastDay})`,
 )
+console.log(`repoStats.ts: ${repoRows.length} public non-fork repositories`)

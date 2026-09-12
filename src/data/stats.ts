@@ -3,20 +3,21 @@
  *
  * Regenerate with `npm run stats:fetch` (scripts/fetch-stats.mts), which
  * queries the GitHub API through the authenticated gh CLI and rewrites this
- * file and src/data/contributions.ts in place. Hand-maintained profile facts
- * (URLs, bio) live separately in src/data/profile.ts.
+ * file, src/data/contributions.ts and src/data/repoStats.ts in place.
+ * Hand-maintained profile facts (URLs, bio) live separately in
+ * src/data/profile.ts.
  */
 
 /** ISO date the snapshots below (and contributions.ts) were retrieved. */
-export const snapshotDate = '2026-09-11'
+export const snapshotDate = '2026-09-12'
 
 export const profileStats = {
   /** Sum of stars across non-fork public repositories. */
   totalStars: 118,
-  publicRepos: 27,
+  publicRepos: 28,
   followers: 17,
   /** Total commit contributions (GitHub profile contribution graph), 2023–2026. */
-  totalCommits: 1263,
+  totalCommits: 1268,
   /** Years with contributions, ascending. */
   contributionYears: ['2023', '2024', '2025', '2026'] as const,
 } as const

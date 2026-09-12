@@ -2,8 +2,17 @@
  * Tech stack, self-reported on the GitHub profile README
  * (skillicons.dev list) and cross-checked against repository topics/descriptions.
  * Group titles are translated via i18n under `tech.groups.<id>`.
+ *
+ * Every item MUST be a key of the glyph table in ./techIcons.ts — `TechItem` is
+ * derived from that table's keys, so a typo here fails `tsc -b` instead of
+ * silently rendering a chip with no icon.
  */
-import type { TechGroup } from '../types'
+import type { TechItem } from './techIcons'
+
+export interface TechGroup {
+  id: string
+  items: TechItem[]
+}
 
 export const techGroups: TechGroup[] = [
   {
