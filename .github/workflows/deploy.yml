@@ -7,11 +7,12 @@
 # and the GitHub Pages Actions (configure-pages / upload-pages-artifact / deploy-pages).
 #
 # EVERY run (push to main, daily schedule, manual dispatch) first refreshes the
-# GitHub stats snapshots (src/data/stats.ts + src/data/contributions.ts via
-# `npm run stats:fetch`) and commits them back to main when they changed, so
-# star/follower/contribution numbers are current on every deploy. Pushes made
-# with the workflow's GITHUB_TOKEN never re-trigger workflows, so there is no
-# loop.
+# GitHub stats snapshots (src/data/stats.ts + src/data/contributions.ts +
+# src/data/repoStats.ts via `npm run stats:fetch`) and commits them back to main
+# when they changed, so star/follower/contribution numbers — and the per-repo
+# stars/language/archived flags shown on the project cards — are current on
+# every deploy. Pushes made with the workflow's GITHUB_TOKEN never re-trigger
+# workflows, so there is no loop.
 
 name: Deploy to GitHub Pages
 
@@ -66,10 +67,10 @@ jobs:
           npm run stats:fetch || echo '::warning::stats refresh failed; deploying with the committed snapshots'
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          if git diff --quiet -- src/data/stats.ts src/data/contributions.ts; then
+          if git diff --quiet -- src/data/stats.ts src/data/contributions.ts src/data/repoStats.ts; then
             echo 'stats snapshots unchanged — nothing to commit'
           else
-            git add src/data/stats.ts src/data/contributions.ts
+            git add src/data/stats.ts src/data/contributions.ts src/data/repoStats.ts
             git commit -m 'chore(data): refresh GitHub stats snapshots [skip ci]'
             git push || echo '::warning::stats commit not pushed (a newer commit likely landed); deploying with the refreshed working tree anyway'
           fi
