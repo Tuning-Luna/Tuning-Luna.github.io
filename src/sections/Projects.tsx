@@ -4,6 +4,7 @@ import { Section } from '../components/Section'
 import { profile } from '../data/profile'
 import { courseProjects, featuredProjects } from '../data/projects'
 import { ProjectCard } from './ProjectCard'
+import { ProjectRow } from './ProjectRow'
 import './Projects.css'
 
 export function Projects() {
@@ -23,27 +24,16 @@ export function Projects() {
       </div>
 
       <h3 className="projects__subhead">{t('projects.moreTitle')}</h3>
-      <ul className="projects__list">
-        {courseProjects.map((project) => (
-          <li key={project.id} className="projects__row">
-            <a
-              className="projects__row-name"
-              href={project.repoUrl}
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              {project.name}
-            </a>
-            <span className="projects__row-desc">
-              {t(`projects.items.${project.id}`)}
-            </span>
-            <span className="projects__row-lang">{project.language}</span>
-            {project.archived && (
-              <span className="projects__row-archived">{t('projects.archived')}</span>
-            )}
-          </li>
-        ))}
-      </ul>
+      {/* One glass panel rather than seven glass rows: the frosted material
+          stays on the featured cards, so "glass = featured" reads as the
+          section's hierarchy instead of being everywhere. */}
+      <div className="glass-card projects__more">
+        <ul className="projects__list">
+          {courseProjects.map((project) => (
+            <ProjectRow key={project.id} project={project} />
+          ))}
+        </ul>
+      </div>
 
       <div className="projects__viewall">
         <Button href={`${profile.githubUrl}?tab=repositories`} variant="text">

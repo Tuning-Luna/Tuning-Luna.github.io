@@ -30,79 +30,18 @@
   }
 }
 
+/* The "course projects & more" list is a single frosted panel (surface from the
+   shared .glass-card utility); the rows inside it are plain, separated by
+   hairlines — see ProjectRow.css. */
+.projects__more {
+  padding: var(--md-sys-spacing-sm);
+}
+
 .projects__list {
   list-style: none;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--md-sys-spacing-sm);
-}
-
-.projects__row {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: baseline;
-  gap: var(--md-sys-spacing-sm) var(--md-sys-spacing-md);
-  padding: var(--md-sys-spacing-md) var(--md-sys-spacing-lg);
-  border-radius: var(--md-sys-shape-corner-medium);
-  /* Frosted glass, matching the featured cards instead of a solid block. */
-  background-color: color-mix(
-    in srgb,
-    var(--md-sys-color-surface-container-low) calc(var(--md-glass-opacity) * 100%),
-    transparent
-  );
-  -webkit-backdrop-filter: blur(var(--md-glass-blur)) saturate(var(--md-glass-saturate));
-  backdrop-filter: blur(var(--md-glass-blur)) saturate(var(--md-glass-saturate));
-  border: 1px solid var(--md-glass-border);
-  transition: background-color var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard);
-}
-
-.projects__row:hover {
-  background-color: color-mix(
-    in srgb,
-    var(--md-sys-color-surface-container) calc(var(--md-glass-opacity) * 100%),
-    transparent
-  );
-}
-
-.projects__row-name {
-  font-size: var(--md-sys-typescale-title-small-size);
-  font-weight: var(--md-sys-typescale-title-small-weight);
-  letter-spacing: var(--md-sys-typescale-title-small-tracking);
-  color: var(--md-sys-color-on-surface);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 180px;
-}
-
-.projects__row-name:hover {
-  color: var(--md-sys-color-primary);
-}
-
-.projects__row-desc {
-  font-size: var(--md-sys-typescale-body-small-size);
-  line-height: var(--md-sys-typescale-body-small-line-height);
-  color: var(--md-sys-color-on-surface-variant);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-}
-
-.projects__row-lang {
-  font-size: var(--md-sys-typescale-label-small-size);
-  font-weight: var(--md-sys-typescale-label-small-weight);
-  letter-spacing: var(--md-sys-typescale-label-small-tracking);
-  color: var(--md-sys-color-primary);
-}
-
-.projects__row-archived {
-  font-size: var(--md-sys-typescale-label-small-size);
-  font-weight: var(--md-sys-typescale-label-small-weight);
-  letter-spacing: var(--md-sys-typescale-label-small-tracking);
-  color: var(--md-sys-color-outline);
 }
 
 .projects__viewall {

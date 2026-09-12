@@ -28,15 +28,26 @@ export function ProjectCard({ project }: { project: Project }) {
       </p>
       <div className="project-card__meta">
         <Chip>{project.language}</Chip>
+        {/* Zero counts say nothing, so they are omitted rather than shown as a
+            bare "0". The label lives in visually-hidden text: `title` on a
+            non-interactive span is unreachable by touch and keyboard, and the
+            icon is aria-hidden, so the number would otherwise be announced
+            alone. */}
         <span className="project-card__stats">
-          <span className="project-card__stat" title={t('projects.stars')}>
-            <Icon name="star" size={15} />
-            {project.stars}
-          </span>
-          <span className="project-card__stat" title={t('projects.forks')}>
-            <Icon name="fork" size={15} />
-            {project.forks}
-          </span>
+          {project.stars > 0 && (
+            <span className="project-card__stat">
+              <Icon name="star" size={15} />
+              {project.stars}
+              <span className="visually-hidden">{t('projects.stars')}</span>
+            </span>
+          )}
+          {project.forks > 0 && (
+            <span className="project-card__stat">
+              <Icon name="fork" size={15} />
+              {project.forks}
+              <span className="visually-hidden">{t('projects.forks')}</span>
+            </span>
+          )}
         </span>
       </div>
       <div className="project-card__actions">
