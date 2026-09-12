@@ -22,7 +22,7 @@ export function Activity() {
 
       <div className="activity__years">
         <span className="activity__years-label">{t('activity.yearsLabel')}</span>
-        <div className="activity__year-chips">
+        <div className="chip-set">
           {profileStats.contributionYears.map((year) => (
             <Chip key={year}>{year}</Chip>
           ))}

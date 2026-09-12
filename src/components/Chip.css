@@ -1,4 +1,6 @@
-/* M3 assist chip. */
+/* M3 outlined chip used as a non-interactive tag (tech names, languages,
+   years). Not an *assist* chip: M3 reserves that for interactive one-shot
+   actions, whereas this is static information. */
 
 .m3-chip {
   display: inline-flex;

@@ -28,7 +28,3 @@
   color: var(--md-sys-color-on-surface-variant);
 }
 
-.activity__year-chips {
-  display: flex;
-  gap: var(--md-sys-spacing-sm);
-}

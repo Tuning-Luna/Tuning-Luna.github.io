@@ -1,24 +1,30 @@
+/* The frosted surface comes from the shared .glass-card utility
+   (theme/utilities.css) — same pattern as Activity's stats card. Padding and
+   the label / chip-set grid live here. */
+
 .stack {
-  display: flex;
-  flex-direction: column;
-  gap: var(--md-sys-spacing-2xl);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--md-sys-spacing-xl);
+  padding: var(--md-sys-spacing-2xl);
 }
 
-.stack__group {
-  display: flex;
-  flex-direction: column;
-  gap: var(--md-sys-spacing-lg);
+@container (min-width: 560px) {
+  .stack {
+    /* max-content sizes the label column to the longest group title, so the
+       titles line up without a magic width. Baseline alignment puts each title
+       on the same line as the text of the first chip beside it. */
+    grid-template-columns: max-content 1fr;
+    align-items: baseline;
+    column-gap: var(--md-sys-spacing-2xl);
+  }
 }
 
 .stack__group-title {
-  font-size: var(--md-sys-typescale-title-medium-size);
-  font-weight: var(--md-sys-typescale-title-medium-weight);
-  letter-spacing: var(--md-sys-typescale-title-medium-tracking);
+  font-family: var(--md-ref-typeface-display);
+  font-size: var(--md-sys-typescale-title-small-size);
+  font-weight: var(--md-sys-typescale-title-small-weight);
+  line-height: var(--md-sys-typescale-title-small-line-height);
+  letter-spacing: var(--md-sys-typescale-title-small-tracking);
   color: var(--md-sys-color-on-surface);
-}
-
-.stack__chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--md-sys-spacing-sm);
 }

@@ -46,12 +46,6 @@
   margin-bottom: var(--md-sys-spacing-lg);
 }
 
-.about__chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--md-sys-spacing-sm);
-}
-
 /* Blinking cursor shown at the end of the paragraph currently being typed. */
 .type-caret {
   display: inline-block;

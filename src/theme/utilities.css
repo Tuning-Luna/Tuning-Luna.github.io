@@ -28,6 +28,16 @@
   border: 0;
 }
 
+/* --- Chip set: a wrapping row of static tag chips (About's focus list, the
+   Tech Stack groups, Activity's years). `chip-set` is M3's own term for a
+   group of chips; the chips themselves come from components/Chip. --- */
+
+.chip-set {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--md-sys-spacing-sm);
+}
+
 /* --- Frosted-glass card surface (uses the --md-glass-* tokens) ---
    Card-specific padding/gap/display stay in the component's own CSS; this is
    only the shared surface recipe so it lives in exactly one place. */

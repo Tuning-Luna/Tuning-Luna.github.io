@@ -62,7 +62,7 @@ export function About() {
         </div>
         <div className="about__focus">
           <h3 className="about__focus-title">{t('about.focusTitle')}</h3>
-          <div className="about__chips">
+          <div className="chip-set">
             {focus.map((item) => (
               <Chip key={item}>{item}</Chip>
             ))}
