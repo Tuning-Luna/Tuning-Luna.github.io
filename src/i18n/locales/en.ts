@@ -150,5 +150,7 @@ export default {
     backToTop: 'Back to top',
     openExternal: 'Opens in a new tab',
     repo: 'View this site on GitHub',
+    railProfile: 'Profile',
+    railWidgets: 'Live widgets',
   },
 }

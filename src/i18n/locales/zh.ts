@@ -137,5 +137,7 @@ export default {
     backToTop: '返回顶部',
     openExternal: '在新标签页打开',
     repo: '在 GitHub 查看本站源码',
+    railProfile: '个人资料',
+    railWidgets: '实时组件',
   },
 }
