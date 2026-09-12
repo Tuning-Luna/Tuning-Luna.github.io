@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- One URL, so this file is close to a formality — it is kept only because
+     robots.txt advertises it.
+
+     Deliberately no <lastmod>: Google reads it only when it is "consistently and
+     verifiably accurate", and explicitly warns against stamping it with a build
+     or deploy time. A hand-typed date drifts instead, and regenerating it inside
+     `npm run stats:fetch` would rewrite this file on every run — which defeats
+     the deploy workflow's "commit only when the data actually changed" gate and
+     would start producing a commit every single day. Google's own guidance is to
+     omit lastmod when a trustworthy date is not available.
+
+     No <changefreq> or <priority> either: Google states it ignores both, and
+     "don't bother adding them". -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://tuning-luna.github.io/</loc>
-    <lastmod>2026-08-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
   </url>
 </urlset>
