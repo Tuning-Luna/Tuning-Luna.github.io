@@ -1,6 +1,6 @@
 /**
- * GitHub contribution calendar snapshot (last 12 months, 2025-09-14 → 2026-09-15),
- * retrieved 2026-09-15 via the GraphQL contributionsCollection API
+ * GitHub contribution calendar snapshot (last 12 months, 2025-09-14 → 2026-09-16),
+ * retrieved 2026-09-16 via the GraphQL contributionsCollection API
  * (npm run stats:fetch regenerates it).
  *
  * Weeks are column-major like GitHub's graph: weeks[i] is a Sun-Sat column.
@@ -10,9 +10,9 @@
 import type { ContributionDay } from '../types'
 
 export const contributionCalendar = {
-  retrievedAt: '2026-09-15',
+  retrievedAt: '2026-09-16',
   /** Contributions inside the calendar window. */
-  total: 887,
+  total: 920,
   weeks: [
   [
     { date: '2025-09-14', count: 3, level: 2 },
@@ -412,10 +412,10 @@ export const contributionCalendar = {
   ],
   [
     { date: '2026-07-19', count: 5, level: 3 },
-    { date: '2026-07-20', count: 0, level: 0 },
-    { date: '2026-07-21', count: 0, level: 0 },
-    { date: '2026-07-22', count: 0, level: 0 },
-    { date: '2026-07-23', count: 3, level: 2 },
+    { date: '2026-07-20', count: 9, level: 4 },
+    { date: '2026-07-21', count: 8, level: 4 },
+    { date: '2026-07-22', count: 5, level: 3 },
+    { date: '2026-07-23', count: 4, level: 3 },
     { date: '2026-07-24', count: 0, level: 0 },
     { date: '2026-07-25', count: 2, level: 2 },
   ],
@@ -424,7 +424,7 @@ export const contributionCalendar = {
     { date: '2026-07-27', count: 0, level: 0 },
     { date: '2026-07-28', count: 0, level: 0 },
     { date: '2026-07-29', count: 0, level: 0 },
-    { date: '2026-07-30', count: 4, level: 3 },
+    { date: '2026-07-30', count: 5, level: 3 },
     { date: '2026-07-31', count: 1, level: 1 },
     { date: '2026-08-01', count: 1, level: 1 },
   ],
@@ -449,7 +449,7 @@ export const contributionCalendar = {
   [
     { date: '2026-08-16', count: 18, level: 4 },
     { date: '2026-08-17', count: 20, level: 4 },
-    { date: '2026-08-18', count: 6, level: 4 },
+    { date: '2026-08-18', count: 7, level: 4 },
     { date: '2026-08-19', count: 3, level: 2 },
     { date: '2026-08-20', count: 0, level: 0 },
     { date: '2026-08-21', count: 0, level: 0 },
@@ -486,6 +486,7 @@ export const contributionCalendar = {
     { date: '2026-09-13', count: 15, level: 4 },
     { date: '2026-09-14', count: 0, level: 0 },
     { date: '2026-09-15', count: 1, level: 1 },
+    { date: '2026-09-16', count: 8, level: 4 },
   ],
   ] as ContributionDay[][],
 } as const
