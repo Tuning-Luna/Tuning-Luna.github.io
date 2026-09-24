@@ -14,7 +14,7 @@
 import type { RepoStat } from '../types'
 
 /** ISO date this snapshot was retrieved. */
-export const repoStatsDate = '2026-09-23'
+export const repoStatsDate = '2026-09-24'
 
 export const repoStats = {
   'HFUT_XC_Study_Things': { stars: 87, forks: 5, language: 'C++', archived: false },
@@ -34,7 +34,7 @@ export const repoStats = {
   'my-new-tab-html': { stars: 0, forks: 0, language: 'Vue', archived: true },
   'my-stack': { stars: 1, forks: 0, language: 'C++', archived: false },
   'oa-system': { stars: 0, forks: 0, language: 'Java', archived: false },
-  'oh-my-new-tab': { stars: 0, forks: 0, language: 'JavaScript', archived: false },
+  'oh-my-new-tab': { stars: 0, forks: 0, language: 'CSS', archived: false },
   'qt-projects-showcase': { stars: 0, forks: 0, language: 'C++', archived: true },
   'question-bank-management-system': { stars: 0, forks: 0, language: 'Vue', archived: false },
   'react-message-board': { stars: 0, forks: 0, language: 'TypeScript', archived: false },
