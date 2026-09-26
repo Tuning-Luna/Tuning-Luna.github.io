@@ -143,6 +143,18 @@
   /* Bright top edge that makes a translucent surface read as "glass". */
   --md-glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 
+  /* --- Site background mask (.site-bg::after) ---
+     Opacity of the theme-coloured wash laid over the fixed photo. Unlike the
+     glass surfaces above, text sits *directly* on this layer in places (the
+     scrolling content column carries no glass), so it has to hold up 14px
+     `on-surface-variant` on its own. Measured through the real blur + cover +
+     scale pipeline, light mode at 0.68 left the worst region at 4.39:1 — under
+     AA's 4.5:1 floor; 0.80 lifts that to 5.84:1. Dark mode is never near the
+     floor (worst 10.5:1), so it keeps the lighter 0.60 and lets the photo show. */
+  --md-site-bg-mask-light: 0.8;
+  --md-site-bg-mask-dark: 0.6;
+  --md-site-bg-mask: var(--md-site-bg-mask-light);
+
   /* --- Scrollbar (derived from the Material Scrollbar) ---
      MD3 publishes no web scrollbar component or CSS spec. These values follow
      Flutter's Material Scrollbar, Google's official Material implementation
@@ -160,6 +172,7 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
     --md-glass-opacity: var(--md-glass-opacity-dark);
+    --md-site-bg-mask: var(--md-site-bg-mask-dark);
     --md-scrollbar-thumb: color-mix(in srgb, var(--md-sys-color-on-surface) 30%, transparent);
     --md-scrollbar-thumb-hover: color-mix(in srgb, var(--md-sys-color-on-surface) 65%, transparent);
     --md-scrollbar-thumb-active: color-mix(in srgb, var(--md-sys-color-on-surface) 75%, transparent);
@@ -168,6 +181,7 @@
 
 :root[data-theme='dark'] {
   --md-glass-opacity: var(--md-glass-opacity-dark);
+  --md-site-bg-mask: var(--md-site-bg-mask-dark);
   --md-scrollbar-thumb: color-mix(in srgb, var(--md-sys-color-on-surface) 30%, transparent);
   --md-scrollbar-thumb-hover: color-mix(in srgb, var(--md-sys-color-on-surface) 65%, transparent);
   --md-scrollbar-thumb-active: color-mix(in srgb, var(--md-sys-color-on-surface) 75%, transparent);
