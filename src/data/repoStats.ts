@@ -14,7 +14,7 @@
 import type { RepoStat } from '../types'
 
 /** ISO date this snapshot was retrieved. */
-export const repoStatsDate = '2026-10-04'
+export const repoStatsDate = '2026-10-05'
 
 export const repoStats = {
   'HFUT_XC_Study_Things': { stars: 87, forks: 5, language: 'C++', archived: false },
@@ -22,7 +22,7 @@ export const repoStats = {
   'address-book-manage-system': { stars: 0, forks: 0, language: 'C++', archived: false },
   'anzhiku': { stars: 0, forks: 0, language: 'JavaScript', archived: false },
   'class-quiz-system': { stars: 1, forks: 0, language: 'C++', archived: false },
-  'github-avatar-generator': { stars: 11, forks: 1, language: 'JavaScript', archived: false },
+  'github-avatar-generator': { stars: 12, forks: 1, language: 'JavaScript', archived: false },
   'hairdressing-member-manger-system': { stars: 0, forks: 1, language: 'Vue', archived: false },
   'hfut-xc-login-reverse': { stars: 5, forks: 0, language: 'Python', archived: false },
   'kards-decks-collection-scraper': { stars: 11, forks: 0, language: 'Python', archived: false },
