@@ -14,7 +14,7 @@
 import type { RepoStat } from '../types'
 
 /** ISO date this snapshot was retrieved. */
-export const repoStatsDate = '2026-10-28'
+export const repoStatsDate = '2026-10-29'
 
 export const repoStats = {
   'HFUT_XC_Study_Things': { stars: 94, forks: 5, language: 'C++', archived: false },
@@ -22,7 +22,7 @@ export const repoStats = {
   'address-book-manage-system': { stars: 0, forks: 0, language: 'C++', archived: false },
   'anzhiku': { stars: 0, forks: 0, language: 'JavaScript', archived: false },
   'class-quiz-system': { stars: 1, forks: 0, language: 'C++', archived: false },
-  'github-avatar-generator': { stars: 13, forks: 1, language: 'JavaScript', archived: false },
+  'github-avatar-generator': { stars: 14, forks: 1, language: 'JavaScript', archived: false },
   'hairdressing-member-manger-system': { stars: 0, forks: 1, language: 'Vue', archived: false },
   'hfut-xc-login-reverse': { stars: 5, forks: 0, language: 'Python', archived: false },
   'kards-decks-collection-scraper': { stars: 11, forks: 0, language: 'Python', archived: false },
@@ -36,7 +36,7 @@ export const repoStats = {
   'oa-system': { stars: 0, forks: 0, language: 'Java', archived: false },
   'oh-my-new-tab': { stars: 0, forks: 0, language: 'CSS', archived: false },
   'qt-projects-showcase': { stars: 0, forks: 0, language: 'C++', archived: true },
-  'question-bank-management-system': { stars: 0, forks: 0, language: 'Vue', archived: false },
+  'question-bank-management-system': { stars: 1, forks: 0, language: 'Vue', archived: false },
   'react-message-board': { stars: 0, forks: 0, language: 'TypeScript', archived: false },
   'sky-takeout': { stars: 0, forks: 0, language: 'Java', archived: true },
   'tenant-hub': { stars: 0, forks: 0, language: 'TypeScript', archived: false },
