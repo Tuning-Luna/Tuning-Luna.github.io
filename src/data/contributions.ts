@@ -1,6 +1,6 @@
 /**
- * GitHub contribution calendar snapshot (last 12 months, 2025-10-26 → 2026-10-31),
- * retrieved 2026-10-31 via the GraphQL contributionsCollection API
+ * GitHub contribution calendar snapshot (last 12 months, 2025-11-02 → 2026-11-01),
+ * retrieved 2026-11-01 via the GraphQL contributionsCollection API
  * (npm run stats:fetch regenerates it).
  *
  * Weeks are column-major like GitHub's graph: weeks[i] is a Sun-Sat column.
@@ -10,19 +10,10 @@
 import type { ContributionDay } from '../types'
 
 export const contributionCalendar = {
-  retrievedAt: '2026-10-31',
+  retrievedAt: '2026-11-01',
   /** Contributions inside the calendar window. */
-  total: 1034,
+  total: 1096,
   weeks: [
-  [
-    { date: '2025-10-26', count: 1, level: 1 },
-    { date: '2025-10-27', count: 0, level: 0 },
-    { date: '2025-10-28', count: 0, level: 0 },
-    { date: '2025-10-29', count: 0, level: 0 },
-    { date: '2025-10-30', count: 0, level: 0 },
-    { date: '2025-10-31', count: 0, level: 0 },
-    { date: '2025-11-01', count: 0, level: 0 },
-  ],
   [
     { date: '2025-11-02', count: 0, level: 0 },
     { date: '2025-11-03', count: 2, level: 2 },
@@ -490,6 +481,9 @@ export const contributionCalendar = {
     { date: '2026-10-29', count: 4, level: 3 },
     { date: '2026-10-30', count: 10, level: 4 },
     { date: '2026-10-31', count: 0, level: 0 },
+  ],
+  [
+    { date: '2026-11-01', count: 62, level: 4 },
   ],
   ] as ContributionDay[][],
 } as const
