@@ -17,7 +17,7 @@ import type { RepoStat } from '../types'
 export const repoStatsDate = '2026-11-10'
 
 export const repoStats = {
-  'HFUT_XC_Study_Things': { stars: 99, forks: 5, language: 'C++', archived: false },
+  'HFUT_XC_Study_Things': { stars: 101, forks: 5, language: 'C++', archived: false },
   'Tuning-Luna.github.io': { stars: 1, forks: 0, language: 'TypeScript', archived: false },
   'address-book-manage-system': { stars: 0, forks: 0, language: 'C++', archived: false },
   'anzhiku': { stars: 0, forks: 0, language: 'JavaScript', archived: false },
