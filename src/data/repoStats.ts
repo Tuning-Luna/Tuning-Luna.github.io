@@ -14,7 +14,7 @@
 import type { RepoStat } from '../types'
 
 /** ISO date this snapshot was retrieved. */
-export const repoStatsDate = '2026-11-15'
+export const repoStatsDate = '2026-11-17'
 
 export const repoStats = {
   'HFUT_XC_Study_Things': { stars: 103, forks: 6, language: 'C++', archived: false },
