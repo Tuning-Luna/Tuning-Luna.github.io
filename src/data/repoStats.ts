@@ -14,10 +14,10 @@
 import type { RepoStat } from '../types'
 
 /** ISO date this snapshot was retrieved. */
-export const repoStatsDate = '2026-11-18'
+export const repoStatsDate = '2026-11-19'
 
 export const repoStats = {
-  'HFUT_XC_Study_Things': { stars: 104, forks: 6, language: 'C++', archived: false },
+  'HFUT_XC_Study_Things': { stars: 108, forks: 7, language: 'C++', archived: false },
   'Tuning-Luna.github.io': { stars: 1, forks: 0, language: 'TypeScript', archived: false },
   'address-book-manage-system': { stars: 0, forks: 0, language: 'C++', archived: false },
   'anzhiku': { stars: 0, forks: 0, language: 'JavaScript', archived: false },
