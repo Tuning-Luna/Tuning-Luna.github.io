@@ -9,11 +9,11 @@
  */
 
 /** ISO date the snapshots below (and contributions.ts) were retrieved. */
-export const snapshotDate = '2026-11-24'
+export const snapshotDate = '2026-11-25'
 
 export const profileStats = {
   /** Sum of stars across non-fork public repositories. */
-  totalStars: 150,
+  totalStars: 149,
   publicRepos: 29,
   followers: 18,
   /** Total commit contributions (GitHub profile contribution graph), 2023–2026. */
